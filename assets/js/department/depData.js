@@ -1,7 +1,7 @@
 $(document).ready(function() {
   let base_url = $('#base_url').val();
 
-  let table = $('#userTable').DataTable({
+  let table1 = $('#userTable').DataTable({
     columns:[
       {'data':'id'},
       {'data':'username'},
@@ -25,8 +25,8 @@ $(document).ready(function() {
     method:'post',
     dataType: 'json',
     success: function(res){
-      table.clear();
-      table.rows.add(res).draw();
+      table1.clear();
+      table1.rows.add(res).draw();
     },
     error: function(res){
       console.log('error');

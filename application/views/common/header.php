@@ -11,6 +11,7 @@
   <meta name="description" content="">
   <meta name="msapplication-tap-highlight" content="no">
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -65,13 +66,13 @@
               </a>
             </li>
             <li class="btn-group nav-item">
-              <a href="javascript:void(0);" class="nav-link">
+              <a href="<?= base_url('Dashboard/projectReview') ?>" class="nav-link">
                 <i class="nav-link-icon fa fa-edit"></i>
                 Projects
               </a>
             </li>
             <li class="dropdown nav-item">
-              <a href="javascript:void(0);" class="nav-link">
+              <a href="<?= base_url('Dashboard/settings') ?>" class="nav-link">
                 <i class="nav-link-icon fa fa-cog"></i>
                 Settings
               </a>
@@ -171,6 +172,34 @@
                     <a href="<?= base_url('Department/addDepartment') ?>">
                       <i class="metismenu-icon"></i>
                       Add Department
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('Portal/addJob') ?>">
+                      <i class="metismenu-icon"></i>
+                      Post Job
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="app-sidebar__heading">Flow Charts</li>
+              <li>
+                <a href="#">
+                  <i class="metismenu-icon pe-7s-diamond"></i>
+                  Flowchart Basics
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                  <li>
+                    <a href="<?= base_url('FlowChart/flowCreateView') ?>">
+                      <i class="metismenu-icon"></i>
+                      Create/View FlowChart
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('FlowChart/viewFlows') ?>">
+                      <i class="metismenu-icon"></i>
+                      View Flows
                     </a>
                   </li>
                 </ul>
