@@ -13,14 +13,20 @@
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <style media="screen">
+  .closed-sidebar:not(.closed-sidebar-mobile) .smalllogo {
+    display: none;
+  }
+  </style>
 </head>
 <body>
-  <input type="text" id="base_url" name="" value="<?= base_url() ?>">
+  <input type="text" id="base_url" name="" value="<?= base_url() ?>" style="display:none;">
   <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 
     <div class="app-header header-shadow">
       <div class="app-header__logo">
-        <div class="logo-src"></div>
+        <!-- <div class="logo-src"></div> -->
+        <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="smalllogo" style="height:25px;width:120px;">
         <div class="header__pane ml-auto">
           <div>
             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -58,26 +64,28 @@
             </div>
             <button class="close"></button>
           </div>
-          <ul class="header-menu nav">
-            <li class="nav-item">
-              <a href="javascript:void(0);" class="nav-link">
-                <i class="nav-link-icon fa fa-database"> </i>
-                Statistics
-              </a>
-            </li>
-            <li class="btn-group nav-item">
-              <a href="<?= base_url('Dashboard/projectReview') ?>" class="nav-link">
-                <i class="nav-link-icon fa fa-edit"></i>
-                Projects
-              </a>
-            </li>
-            <li class="dropdown nav-item">
-              <a href="<?= base_url('Dashboard/settings') ?>" class="nav-link">
-                <i class="nav-link-icon fa fa-cog"></i>
-                Settings
-              </a>
-            </li>
-          </ul>
+          <?php if($this->session->userdata('dep_type') == 1 || $this->session->userdata('dep_type') == 2){ ?>
+            <ul class="header-menu nav">
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link">
+                  <i class="nav-link-icon fa fa-database"> </i>
+                  Statistics
+                </a>
+              </li>
+              <li class="btn-group nav-item">
+                <a href="<?= base_url('Dashboard/projectReview') ?>" class="nav-link">
+                  <i class="nav-link-icon fa fa-edit"></i>
+                  Projects
+                </a>
+              </li>
+              <li class="dropdown nav-item">
+                <a href="<?= base_url('Dashboard/settings') ?>" class="nav-link">
+                  <i class="nav-link-icon fa fa-cog"></i>
+                  Settings
+                </a>
+              </li>
+            </ul>
+          <?php } ?>
         </div>
         <div class="app-header-right">
           <div class="header-btn-lg pr-0">
@@ -95,16 +103,24 @@
                       <h6 tabindex="-1" class="dropdown-header">Header</h6>
                       <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                       <div tabindex="-1" class="dropdown-divider"></div>
-                      <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                      <a href="<?= base_url('Login/logout') ?>" style="text-decoration:none;"><button type="button" tabindex="0" class="dropdown-item">Logout</button></a>
                     </div>
                   </div>
                 </div>
                 <div class="widget-content-left  ml-3 header-user-info">
                   <div class="widget-heading">
-                    Admin
+                    <?= $this->session->userdata('username') ?>
                   </div>
                   <div class="widget-subheading">
-                    HR Department
+                    <?php
+                    if($this->session->userdata('dep_type') == 1){
+                      echo 'IT Department';
+                    }elseif ($this->session->userdata('dep_type') == 2) {
+                      echo 'HR Department';
+                    }elseif($this->session->userdata('dep_type') == 3){
+                      echo 'Legal Department';
+                    }
+                    ?>
                   </div>
                 </div>
                 <div class="widget-content-right header-user-info ml-3">
@@ -117,6 +133,9 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="scrollbar-container">
     </div>
 
     <div class="app-main">
@@ -155,21 +174,21 @@
             <ul class="vertical-nav-menu">
               <li class="app-sidebar__heading">Dashboards</li>
               <li>
-                <a href="<?= base_url('Dashboard/index') ?>">
-                  <i class="metismenu-icon pe-7s-rocket"></i>
+                <a href="<?= base_url('Dashboard/index') ?>" class="<?php if(isset($activeclass)){ echo $activeclass; } ?>">
+                  <i class="metismenu-icon pe-7s-home"></i>
                   Dashboard
                 </a>
               </li>
               <li class="app-sidebar__heading">Users</li>
-              <li>
+              <li class="<?php if(isset($activedep)){ echo $activedep; } ?>">
                 <a href="#">
-                  <i class="metismenu-icon pe-7s-diamond"></i>
-                  Elements
+                  <i class="metismenu-icon pe-7s-notebook"></i>
+                  Post
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
                   <li>
-                    <a href="<?= base_url('Department/addDepartment') ?>">
+                    <a href="<?= base_url('Department/addDepartment') ?>" class="<?php if(isset($activedep)){ echo $activedep; } ?>">
                       <i class="metismenu-icon"></i>
                       Add Department
                     </a>
@@ -182,10 +201,66 @@
                   </li>
                 </ul>
               </li>
+              <li class="app-sidebar__heading">Candidates Listings</li>
+              <li>
+                <a href="#">
+                  <i class="metismenu-icon pe-7s-users"></i>
+                  Candidates
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                  <li>
+                    <a href="<?= base_url('CandidateList/viewCan') ?>">
+                      <i class="metismenu-icon"></i>
+                      View Candidates
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('CandidateList/sortCan') ?>">
+                      <i class="metismenu-icon"></i>
+                      SortList Candidates
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('CandidateList/interCan') ?>">
+                      <i class="metismenu-icon"></i>
+                      Interview
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="app-sidebar__heading">Candidates Filtering</li>
+              <li>
+                <a href="#">
+                  <i class="metismenu-icon pe-7s-news-paper"></i>
+                  Offerings
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                  <li>
+                    <a href="<?= base_url('OfferCandidates/offerCan') ?>">
+                      <i class="metismenu-icon"></i>
+                      Offer Candidates
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('OfferCandidates/offerLet') ?>">
+                      <i class="metismenu-icon"></i>
+                      Offer Letter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('OfferCandidates/onboCan') ?>">
+                      <i class="metismenu-icon"></i>
+                      Onboard Candidates
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li class="app-sidebar__heading">Flow Charts</li>
               <li>
                 <a href="#">
-                  <i class="metismenu-icon pe-7s-diamond"></i>
+                  <i class="metismenu-icon pe-7s-graph3"></i>
                   Flowchart Basics
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
@@ -207,8 +282,8 @@
               <li class="app-sidebar__heading">About Us</li>
               <li>
                 <a href="#">
-                  <i class="metismenu-icon pe-7s-diamond"></i>
-                  Elements
+                  <i class="metismenu-icon pe-7s-help1"></i>
+                  Help
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>

@@ -2,20 +2,25 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
-
+	private $flowId = 0;
 	function __construct(){
 		parent::__construct();
 		$this->load->model('AddJobModel','addjob');
+		$this->load->model('FlowchartModel','flowmodel');
+		$this->flowId = $this->flowmodel->getFlowByLastId();
 	}
 
 	public function index(){
     $data = 'DashBoard';
+		$classer = 'mm-active';
 		$this->load->view('common/header',[
-			'title' => $data
+			'title' => $data,
+			'activeclass' =>$classer
 		]);
-		//$getJob = $this->addjob->getAllJob();
     $this->load->view('dynamicContent/dashboard/index');
-    $this->load->view('common/footer');
+    $this->load->view('common/footer',[
+			'getFlow' => json_decode($this->flowId->json_data),
+		]);
 	}
 
 	public function settings(){

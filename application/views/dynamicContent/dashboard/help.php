@@ -4,7 +4,7 @@
     <div class="page-title-wrapper">
       <div class="page-title-heading">
         <div class="page-title-icon">
-          <i class="pe-7s-diamond icon-gradient bg-warm-flame">
+          <i class="pe-7s-help1 icon-gradient bg-warm-flame">
           </i>
         </div>
         <div>Help

@@ -1,5 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 <!--MainInner-->
 <div class="app-main__inner">
   <!--Title Start-->
@@ -7,7 +8,7 @@
     <div class="page-title-wrapper">
       <div class="page-title-heading">
         <div class="page-title-icon">
-          <i class="pe-7s-car icon-gradient bg-mean-fruit">
+          <i class="pe-7s-home icon-gradient bg-mean-fruit">
           </i>
         </div>
         <div>Dashboard
@@ -144,4 +145,5 @@
 </div>
 <!--MainIneer-->
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/portal/jobDatatable.js') ?>" charset="utf-8"></script>

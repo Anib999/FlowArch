@@ -21,7 +21,7 @@ class Portal extends CI_Controller {
       'job_title'=>$this->input->post('job_title'),
       'job_desc'=>$this->input->post('job_desc'),
       'posted_date'=>$newDate->format('c'),
-      'posted_by'=>'anib123'
+      'posted_by'=>$this->session->userdata('id')
     );
     //this posted_by comes from session id with name
     $this->addjob->insertJob($data);
@@ -32,7 +32,8 @@ class Portal extends CI_Controller {
     $id = $this->input->post('idview');
     $data = array(
       'your_message'=>$this->input->post('your_message'),
-      'status'=>$this->input->post('status')
+      'status_ar'=>$this->session->userdata('id'),
+      'status'=>$this->input->post('status'),
     );
     if($this->addjob->updateJob($id, $data)){
       echo json_encode(array("status"=>true));

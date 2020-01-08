@@ -23,6 +23,14 @@ $(document).ready(function(){
             $('#after-click').css('width','0');
             return true;
           },
+          onLinkSelect: function(){
+            $('#after-click').css('width','250px');
+            return true;
+          },
+          onLinkUnselect: function(){
+            $('#after-click').css('width','0');
+            return true;
+          }
         });
       },
       error: function(res){
@@ -48,15 +56,14 @@ $(document).ready(function(){
     let getFlowData = $('#savedDa').val();
     let parsedData = JSON.parse(getFlowData);
   })
-
+  //for deletion of selected operator
+  $('.delete_selected_button').click(function() {
+    flowchart.flowchart('deleteSelected');
+  });
   //for whole chart get
   $('#get_data').click(function() {
     let data = flowchart.flowchart('getData');
     $('#flowchart_data').val(JSON.stringify(data, null, 2));
-  });
-  //for deletion of selected operator
-  $('.delete_selected_button').click(function() {
-    flowchart.flowchart('deleteSelected');
   });
   //for set chart data
   var flowChartUpdatedByCode = false;
@@ -171,4 +178,4 @@ $(document).ready(function(){
         }
       }
     });
-})
+  })

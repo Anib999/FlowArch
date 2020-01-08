@@ -19,7 +19,22 @@ class AddJobModel extends CI_Model {
   }
 
   public function getAllJob(){
-    $query = $this->db->get('jobtab');
+    // $query = $this->db->get('jobtab');
+    $query = $this->db->query('SELECT
+      j.id,
+      j.job_title,
+      j.job_desc,
+      ar.username AS posted_by,
+      j.status,
+      j.posted_date,
+      j.your_message,
+      ars.username AS status_ar
+        FROM `jobtab` AS j
+          JOIN archtab AS ar
+            ON j.posted_by = ar.id
+          LEFT JOIN archtab AS ars
+            ON j.status_ar= ars.id'
+      );
     $result = $query->result();
     return $result;
   }

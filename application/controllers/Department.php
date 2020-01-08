@@ -10,8 +10,12 @@ class Department extends CI_Controller {
   }
 
   public function addDepartment(){
-    $data['title'] = 'Add Department';
-    $this->load->view('common/header',$data);
+    $data = 'Add Department';
+    $classer = 'mm-active';
+		$this->load->view('common/header',[
+			'title' => $data,
+			'activedep' =>$classer
+		]);
     $this->load->view('dynamicContent/department/addDepartment');
     $this->load->view('common/footer');
   }
