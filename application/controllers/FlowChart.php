@@ -47,7 +47,9 @@ class FlowChart extends CI_Controller {
   public function flowCreateUpdate(){
     $data['title'] = 'Create FlowChart';
     $this->load->view('common/header',$data);
-    $this->load->view('dynamicContent/flowchart/flowCreateUpdate');
+    $this->load->view('dynamicContent/flowchart/flowCreateUpdate',[
+      'operators' => $this->operators(),
+    ]);
     $this->load->view('common/footer');
   }
 
@@ -71,5 +73,73 @@ class FlowChart extends CI_Controller {
     );
     $this->flowmodel->updateFlow($id,$data);
     redirect('FlowChart/flowCreateView');
+  }
+
+  private function operators(){
+    return array(
+      array(
+        'title'=>'HR',
+        'inputs'=>0,
+        'outputs'=>1,
+        'label'=>'Human Resource',
+        'icons'=>'fa-user'
+      ),
+      array(
+        'title'=>'Post Job',
+        'inputs'=>1,
+        'outputs'=>2,
+        'label'=>'Post Job',
+        'icons'=>'fa-id-badge'
+      ),
+      array(
+        'title'=>'LinkedIn',
+        'inputs'=>1,
+        'outputs'=>0,
+        'label'=>'Job Portal',
+        'icons'=>'fa-linkedin-square'
+      ),
+      array(
+        'title'=>'View Candidates',
+        'inputs'=>1,
+        'outputs'=>1,
+        'label'=>'View Candidates',
+        'icons'=>'fa-drivers-license'
+      ),
+      array(
+        'title'=>'SortList',
+        'inputs'=>1,
+        'outputs'=>2,
+        'label'=>'SortList Candidate',
+        'icons'=>'fa-edit'
+      ),
+      array(
+        'title'=>'Interview',
+        'inputs'=>1,
+        'outputs'=>1,
+        'label'=>'Interview Candidate',
+        'icons'=>'fa-users'
+      ),
+      array(
+        'title'=>'Offer Candidate',
+        'inputs'=>1,
+        'outputs'=>1,
+        'label'=>'Offer Candidate',
+        'icons'=>'fa-handshake-o'
+      ),
+      array(
+        'title'=>'Offer Letter',
+        'inputs'=>2,
+        'outputs'=>1,
+        'label'=>'Offer Letter',
+        'icons'=>'fa-envelope-open'
+      ),
+      array(
+        'title'=>'Onboarding',
+        'inputs'=>1,
+        'outputs'=>0,
+        'label'=>'Onboarding',
+        'icons'=>'fa-child'
+      )
+    );
   }
 }

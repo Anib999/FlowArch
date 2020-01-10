@@ -43,4 +43,11 @@ class Dashboard extends CI_Controller {
     $this->load->view('dynamicContent/dashboard/help');
     $this->load->view('common/footer');
 	}
+
+	public function userProfile(){
+    $data['title'] = 'User Profile';
+		$this->load->view('common/header',$data);
+    $this->load->view('dynamicContent/dashboard/userprofile');
+    $this->load->view('common/footer');
+	}
 }

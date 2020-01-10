@@ -42,6 +42,9 @@
                 </div>
                 <input class="mt-2 btn btn-primary pull-right" type="submit" name="" value="Login">
               </form>
+              <?php if(isset($error)){ ?>
+              <div style="margin-top:15px;" class="alert alert-danger fade show" role="alert">Either username or password is incorrect</div>
+              <?php } ?>
             </div>
           </div>
         </div>

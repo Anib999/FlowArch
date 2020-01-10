@@ -14,6 +14,7 @@ class Login extends CI_Controller {
   }
 
   public function auth(){
+    $data['error'] = 'Incorrect';
     $username= $this->input->post('username',TRUE);
     $password= $this->input->post('password',TRUE);
     $validate = $this->loginmo->user_validation($username, $password);
@@ -27,7 +28,7 @@ class Login extends CI_Controller {
       $this->session->set_userdata($sesdata);
       redirect('Dashboard/index');
     }else{
-      redirect('Login/login');
+      $this->load->view('dynamicContent/login/login',$data);
     }
   }
 

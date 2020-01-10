@@ -1,6 +1,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/jquery.flowchart.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/flowchart.css') ?>">
+<!-- <style>
+.icon_exp .fa{
+font-size: 22px;
+}
+</style> -->
 <div class="app-main__inner">
   <!--Title-->
   <div class="app-page-title">
@@ -72,114 +77,22 @@
 
   <div id="sticky" class="main-card mb-3 card">
     <div class="no-gutters row">
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="0" data-nb-outputs="1"  data-title="HR">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-user"></i>
-                <div class="widget-heading">Human Resource</div>
+
+      <?php foreach ($operators as $operator) { ?>
+        <div class="col-md-2 col-sm-4 col-4">
+          <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs='<?= $operator['inputs'] ?>' data-nb-outputs='<?= $operator['outputs'] ?>'  data-title="<?= $operator['title'] ?>">
+            <div class="widget-content">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left text-center icon_exp">
+                  <i class="fa <?= $operator['icons'] ?> fa-lg"></i>
+                  <div class="widget-heading"><?= $operator['label'] ?></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="2"  data-title="Post Job">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-id-badge"></i>
-                <div class="widget-heading">Post Job</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="0"  data-title="Job Portal">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-linkedin-square"></i>
-                <div class="widget-heading">LinkedIn</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="1"  data-title="View">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-drivers-license"></i>
-                <div class="widget-heading">View Candidates</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="2"  data-title="Sortlist">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-edit"></i>
-                <div class="widget-heading">Sortlist Candidates</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="1"  data-title="Interview">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-users"></i>
-                <div class="widget-heading">Interview</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="2" data-nb-outputs="1"  data-title="Offer letter">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-handshake-o"></i>
-                <div class="widget-heading">Offer Candidate</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="2" data-nb-outputs="1"  data-title="Offer letter">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-envelope-open"></i>
-                <div class="widget-heading">Offer Letter</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs="1" data-nb-outputs="0"  data-title="Onboarding">
-          <div class="widget-content">
-            <div class="widget-content-wrapper">
-              <div class="widget-content-left text-center">
-                <i class="fa fa-child" ></i>
-                <div class="widget-heading">Onboarding</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <?php } ?>
     </div>
   </div>
 
@@ -195,13 +108,12 @@
       <?php }else{ ?>
         <h5 class="card-title">Edit Flowchart</h5>
         <form action="<?= base_url('FlowChart/updateFlow') ?>" method="post">
-          <div id="flowDiv"></div>
+          <div class="overflow-auto" id="flowDiv"></div>
           <input type="hidden" name="did" value="<?= $_GET['id'] ?>" id="did">
           <input type="hidden" name="savedDa" value="" id="savedDa">
           <input type="submit" name="saveFlow" id="saveFlow" class="save_data btn btn-primary btn-sm" value="Update Flowchart">
         </form>
       <?php } ?>
-
 
     </div>
   </div>

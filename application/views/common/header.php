@@ -26,7 +26,7 @@
     <div class="app-header header-shadow">
       <div class="app-header__logo">
         <!-- <div class="logo-src"></div> -->
-        <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="smalllogo" style="height:25px;width:120px;">
+        <a href="<?= base_url('Dashboard/index') ?>"><img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="smalllogo" style="height:25px;width:120px;"></a>
         <div class="header__pane ml-auto">
           <div>
             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -98,8 +98,8 @@
                       <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                      <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                      <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                      <a href="<?= base_url('Dashboard/userProfile') ?>" style="text-decoration:none;"><button type="button" tabindex="0" class="dropdown-item">User Account</button></a>
+                      <a href="<?= base_url('Dashboard/settings') ?>" style="text-decoration:none;"><button type="button" tabindex="0" class="dropdown-item">Settings</button></a>
                       <h6 tabindex="-1" class="dropdown-header">Header</h6>
                       <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                       <div tabindex="-1" class="dropdown-divider"></div>
@@ -172,7 +172,7 @@
         </div>    <div class="scrollbar-sidebar">
           <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-              <li class="app-sidebar__heading">Dashboards</li>
+              <li class="app-sidebar__heading">Home</li>
               <li>
                 <a href="<?= base_url('Dashboard/index') ?>" class="<?php if(isset($activeclass)){ echo $activeclass; } ?>">
                   <i class="metismenu-icon pe-7s-home"></i>
@@ -180,7 +180,11 @@
                 </a>
               </li>
               <li class="app-sidebar__heading">Users</li>
-              <li class="<?php if(isset($activedep)){ echo $activedep; } ?>">
+              <li class="<?php if(isset($activedep)){
+                echo $activedep;
+              } elseif (isset($activejob)){
+                echo $activejob;
+              } ?>">
                 <a href="#">
                   <i class="metismenu-icon pe-7s-notebook"></i>
                   Post
@@ -194,7 +198,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="<?= base_url('Portal/addJob') ?>">
+                    <a href="<?= base_url('Portal/addJob') ?>" class="<?php if(isset($activejob)){ echo $activejob; } ?>">
                       <i class="metismenu-icon"></i>
                       Post Job
                     </a>
@@ -297,6 +301,12 @@
                     <a href="<?= base_url('Dashboard/help') ?>">
                       <i class="metismenu-icon"></i>
                       Help
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url('Dashboard/help') ?>">
+                      <i class="metismenu-icon"></i>
+                      User Manual
                     </a>
                   </li>
                 </ul>

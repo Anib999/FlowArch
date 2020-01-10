@@ -9,8 +9,12 @@ class Portal extends CI_Controller {
   }
 
 	public function addJob(){
-    $data['title'] = 'Add Job';
-		$this->load->view('common/header',$data);
+    $data = 'Add Job';
+    $classer = 'mm-active';
+		$this->load->view('common/header',[
+			'title' => $data,
+			'activejob' =>$classer
+		]);
     $this->load->view('dynamicContent/portal/addJob');
     $this->load->view('common/footer');
 	}
