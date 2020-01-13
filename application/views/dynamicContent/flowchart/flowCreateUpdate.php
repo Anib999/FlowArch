@@ -1,4 +1,4 @@
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="<?= base_url('assets/js/jquery/jquery-ui.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/jquery.flowchart.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/flowchart.css') ?>">
 <!-- <style>
@@ -138,10 +138,9 @@ font-size: 22px;
           </div>
         </div>
       </div>
-      <button type="button" class="delete_selected_button btn btn-danger btn-sm" name="button">Delete</button>
+      <!-- <button type="button" class="delete_selected_button btn btn-danger btn-sm" name="button">Delete</button> -->
     </div>
   </div>
-
-  <script src="<?= base_url('assets/js/flowchart/jquery.flowchart.js') ?>" charset="utf-8"></script>
-  <script src="<?= base_url('assets/js/flowchart/flowChart.js') ?>" charset="utf-8"></script>
 </div>
+<script src="<?= base_url('assets/js/flowchart/jquery.flowchart.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/flowchart/flowChart.js') ?>" charset="utf-8"></script>

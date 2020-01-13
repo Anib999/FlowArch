@@ -6,6 +6,9 @@ class Portal extends CI_Controller {
   function __construct(){
     parent::__construct();
     $this->load->model('AddJobModel','addjob');
+    if(!$this->session->userdata('id')){
+			redirect('Login/login');
+		}
   }
 
 	public function addJob(){
@@ -54,5 +57,22 @@ class Portal extends CI_Controller {
   public function getJobPostById(){
     $getJobPost = $this->addjob->getJobPostById($_GET['userid']);
     echo json_encode($getJobPost);
+  }
+
+  public function viewJob(){
+    $data = 'View Job';
+    $classer = 'mm-active';
+		$this->load->view('common/header',[
+			'title' => $data,
+			'activeview' =>$classer
+		]);
+    $this->load->view('dynamicContent/portal/viewJobPosted');
+    $this->load->view('common/footer');
+	}
+
+  public function getJobByPostedId(){
+    $sesid = $this->session->userdata('id');
+    $getJobPosted = $this->addjob->getJobByPostedId($sesid);
+    echo json_encode($getJobPosted);
   }
 }

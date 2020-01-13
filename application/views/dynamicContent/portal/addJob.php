@@ -73,10 +73,34 @@
       <h5 class="card-title">Post Job</h5>
       <form class="" method="post" action="<?= base_url('Portal/insertJ') ?>">
         <div class="form-row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="position-relative form-group">
               <label for="job_title" class="">Job Title</label>
               <input name="job_title" id="job_title" placeholder="Job Title" type="text" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="job_type" class="">Job Type</label>
+              <select class="form-control" name="">
+                <option></option>
+                <option value="">Full Time</option>
+                <option value="">Part Time</option>
+                <option value="">Intership</option>
+                <option value="">Freelancer</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="job_email" class="">Email</label>
+              <input name="job_email" id="job_email" placeholder="Your Email" type="text" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="job_location" class="">Location</label>
+              <input name="job_location" id="job_location" placeholder="Job Location" type="text" class="form-control" required>
             </div>
           </div>
           <div class="col-md-12">

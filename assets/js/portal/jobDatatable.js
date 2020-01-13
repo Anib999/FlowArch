@@ -27,7 +27,6 @@ $(document).ready(function(){
     dataType:'json',
     method:'post',
     success: function(res){
-
       table.clear();
       table.rows.add(res).draw();
     },
@@ -124,7 +123,7 @@ $(document).ready(function(){
         }
       },
       error: function(res){
-
+        console.log('error');
       }
     })
   })

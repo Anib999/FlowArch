@@ -1,6 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+<script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
+<link rel="stylesheet" href="<?= base_url('assets/css/datatables/jquery.dataTables.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/datatables/responsive.dataTables.min.css') ?>">
 <!--MainInner-->
 <div class="app-main__inner">
   <!--Title Start-->
@@ -76,8 +76,8 @@
       <div class="card mb-3 widget-content bg-night-fade">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading">Total Orders</div>
-            <div class="widget-subheading">Last year expenses</div>
+            <div class="widget-heading">Total Job Listings</div>
+            <div class="widget-subheading">Listed Jobs</div>
           </div>
           <div class="widget-content-right">
             <div class="widget-numbers text-white"><span>1896</span></div>
@@ -89,11 +89,11 @@
       <div class="card mb-3 widget-content bg-arielle-smile">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading">Clients</div>
-            <div class="widget-subheading">Total Clients Profit</div>
+            <div class="widget-heading">Employees</div>
+            <div class="widget-subheading">Total Employees</div>
           </div>
           <div class="widget-content-right">
-            <div class="widget-numbers text-white"><span>$ 568</span></div>
+            <div class="widget-numbers text-white"><span>568</span></div>
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
       <div class="card mb-3 widget-content bg-happy-green">
         <div class="widget-content-wrapper text-white">
           <div class="widget-content-left">
-            <div class="widget-heading">Followers</div>
+            <div class="widget-heading">Accepted Jobs</div>
             <div class="widget-subheading">People Interested</div>
           </div>
           <div class="widget-content-right">
@@ -144,6 +144,6 @@
 
 </div>
 <!--MainIneer-->
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" charset="utf-8"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/datatables/jquery.dataTables.min.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/datatables/dataTables.responsive.min.js') ?>" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/portal/jobDatatable.js') ?>" charset="utf-8"></script>

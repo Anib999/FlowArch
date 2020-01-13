@@ -8,6 +8,9 @@ class Dashboard extends CI_Controller {
 		$this->load->model('AddJobModel','addjob');
 		$this->load->model('FlowchartModel','flowmodel');
 		$this->flowId = $this->flowmodel->getFlowByLastId();
+		if(!$this->session->userdata('id')){
+			redirect('Login/login');
+		}
 	}
 
 	public function index(){

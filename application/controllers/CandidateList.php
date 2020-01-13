@@ -8,7 +8,11 @@ class CandidateList extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('FlowchartModel','flowmodel');
+		$this->load->model('CandidateModel','canmodel');
 		$this->flowId = $this->flowmodel->getFlowByLastId();
+		if(!$this->session->userdata('id')){
+			redirect('Login/login');
+		}
 	}
 
 	public function viewCan(){
@@ -20,6 +24,21 @@ class CandidateList extends CI_Controller {
 			'getFlow' => json_decode($this->flowId->json_data),
 		]);
     $this->load->view('common/footer');
+	}
+
+	public function addCan(){
+    $data = 'Add Candidates';
+		$this->load->view('common/header',[
+			'title' => $data
+		]);
+    $this->load->view('dynamicContent/candidatesList/addCandidates',[
+			'district'=> json_decode($this->getDis()),
+		]);
+    $this->load->view('common/footer');
+	}
+
+	public function insertCandidate(){
+		$this->load->library('form_validation');
 	}
 
   public function sortCan(){
@@ -48,4 +67,18 @@ class CandidateList extends CI_Controller {
     $getFlowLastId = $this->flowmodel->getFlowByLastId();
     echo json_encode($getFlowLastId->json_data);
   }
+
+	public function getAllCandidate(){
+		$getAllCan = $this->canmodel->getAllCandidate();
+		echo json_encode($getAllCan);
+	}
+
+	public function getCandidateById(){
+		$getCanId = $this->canmodel->getCandidateById($_POST['canid']);
+		echo json_encode($getCanId);
+	}
+
+	private function getDis(){
+		return file_get_contents(FCPATH.'assets/district.json');
+	}
 }

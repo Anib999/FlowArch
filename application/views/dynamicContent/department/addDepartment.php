@@ -77,12 +77,14 @@
             <div class="position-relative form-group">
               <label for="username" class="">Username</label>
               <input name="username" id="username" placeholder="Username" type="text" class="form-control" required>
+              <?= form_error('username'); ?>
             </div>
           </div>
           <div class="col-md-6">
             <div class="position-relative form-group">
               <label for="password" class="">Password</label>
               <input name="password" id="password" placeholder="Password" type="password" class="form-control" required>
+              <?= form_error('password'); ?>
             </div>
           </div>
         </div>
@@ -92,11 +94,12 @@
             <div class="position-relative form-group">
               <label for="dep-type" class="">Department Type</label>
               <select class="form-control" name="dep-type" required>
-                <option>Select Department</option>
+                <option></option>
                 <option value="1">IT Department</option>
                 <option value="2">HR Department</option>
                 <option value="3">Legal Department</option>
               </select>
+              <?= form_error('dep-type'); ?>
             </div>
           </div>
         </div>

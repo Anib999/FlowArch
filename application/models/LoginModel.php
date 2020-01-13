@@ -8,9 +8,8 @@ class LoginModel extends CI_Model {
     $this->load->database();
   }
 
-  public function user_validation($username,$password){
+  public function user_validation($username){
     $this->db->where('username',$username);
-    $this->db->where('password',$password);
     $result = $this->db->get('archtab',1);
     return $result;
   }

@@ -74,3 +74,4 @@
   </div>
 
 </div>
+<script src="<?= base_url('assets/js/autoclosesidebar.js') ?>" charset="utf-8"></script>

@@ -14,21 +14,33 @@ class Login extends CI_Controller {
   }
 
   public function auth(){
-    $data['error'] = 'Incorrect';
+    $data = 'Incorrect';
+    $datat = 'Login';
     $username= $this->input->post('username',TRUE);
     $password= $this->input->post('password',TRUE);
-    $validate = $this->loginmo->user_validation($username, $password);
+    $validate = $this->loginmo->user_validation($username);
     if($validate->num_rows() > 0){
       $data = $validate->row_array();
-      $sesdata = array(
-        'id'=>$data['id'],
-        'username'=>$data['username'],
-        'dep_type'=>$data['dep_type']
-      );
-      $this->session->set_userdata($sesdata);
-      redirect('Dashboard/index');
+      if(password_verify($password, $data['password'] )){
+        $sesdata = array(
+          'id'=>$data['id'],
+          'username'=>$data['username'],
+          'dep_type'=>$data['dep_type']
+        );
+        $this->session->set_userdata($sesdata);
+        redirect('Dashboard/index');
+      }else{
+        $datae['error'] = 'Incorrect';
+        $this->load->view('dynamicContent/login/login',[
+          'error'=>$datae,
+          'title'=>$datat
+        ]);
+      }
     }else{
-      $this->load->view('dynamicContent/login/login',$data);
+      $this->load->view('dynamicContent/login/login',[
+        'error'=>$data,
+        'title'=>$datat
+      ]);
     }
   }
 

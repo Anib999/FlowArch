@@ -4,31 +4,21 @@
       <div class="app-footer-left">
         <ul class="nav">
           <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link">
-              Footer Link 1
-            </a>
+            <i class="fa fa-database"></i> flowarch
           </li>
+        </ul>
+      </div>
+      <div class="app-footer-center offset-md-4">
+        <ul class="nav">
           <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link">
-              Footer Link 2
-            </a>
+            All rights reserved &copy; 2020
           </li>
         </ul>
       </div>
       <div class="app-footer-right">
         <ul class="nav">
           <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link">
-              Footer Link 3
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="javascript:void(0);" class="nav-link">
-              <div class="badge badge-success mr-1 ml-0">
-                <small>NEW</small>
-              </div>
-              Footer Link 4
-            </a>
+              <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="" style="height:21px;">
           </li>
         </ul>
       </div>

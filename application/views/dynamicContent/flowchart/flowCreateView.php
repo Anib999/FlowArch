@@ -36,7 +36,7 @@
       <div class="main-card mb-3 card">
         <div class="card-header">FlowCharts</div>
         <div class="card-body">
-          <table class="table table-striped table-bordered" id='flowList'>
+          <table class="table table-striped table-bordered table-hover" id='flowList'>
             <thead>
               <th>Id</th>
               <th>Created Date</th>

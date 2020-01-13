@@ -7,6 +7,9 @@ class Department extends CI_Controller {
     parent::__construct();
     $this->load->model('AddDepartmentModel','depmodel');
     $this->load->library('form_validation');
+    if(!$this->session->userdata('id')){
+			redirect('Login/login');
+		}
   }
 
   public function addDepartment(){
@@ -21,13 +24,53 @@ class Department extends CI_Controller {
   }
 
   public function insertDep(){
-    $data = array(
-      'username'=>$this->input->post('username'),
-      'password'=>$this->input->post('password'),
-      'dep_type'=>$this->input->post('dep-type')
+    $this->load->library('form_validation');
+
+    $rules = array(
+      array(
+        'field'=>'username',
+        'label'=>'Username',
+        'rules'=>'required|is_unique[archtab.username]',
+        'errors'=>array(
+          'required'=>'%s is required',
+          'is_unique'=>'%s already exists'
+        )
+      ),
+      array(
+        'field'=>'password',
+        'label'=>'Password',
+        'rules'=>'required',
+        'errors'=>array(
+          'required'=>'%s is required'
+        )
+      ),
+      array(
+        'field'=>'dep-type',
+        'label'=>'Department Type',
+        'rules'=>'required',
+        'errors'=>array(
+          'required'=>'%s is required'
+        )
+      )
     );
-    $this->depmodel->insertDepartment($data);
-    redirect('Department/addDepartment');
+    $this->form_validation->set_rules($rules);
+    $this->form_validation->set_error_delimiters("<div class='error'> </div>");
+    $this->form_validation->set_message('required','Enter %s');
+    $options =[
+      'cost'=>10,
+    ];
+    if($this->form_validation->run() === FALSE){
+      $this->addDepartment();
+    }else{
+      //'password'=>$this->input->post('password'),
+      $data = array(
+        'username'=>$this->input->post('username'),
+        'password'=>password_hash(($this->input->post('password')), PASSWORD_BCRYPT, $options),
+        'dep_type'=>$this->input->post('dep-type')
+      );
+      $this->depmodel->insertDepartment($data);
+      redirect('Department/addDepartment');
+    }
   }
 
   public function getAllDep(){

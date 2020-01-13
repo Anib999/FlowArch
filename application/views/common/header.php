@@ -12,11 +12,17 @@
   <meta name="msapplication-tap-highlight" content="no">
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets/js/jquery/jquery-3.4.1.min.js') ?>"></script>
   <style media="screen">
   .closed-sidebar:not(.closed-sidebar-mobile) .smalllogo {
     display: none;
   }
+  /* .btn-group-xs > .btn, .btn-xs {
+    padding: .25rem .4rem;
+    font-size: .875rem;
+    line-height: .5;
+    border-radius: .2rem;
+  } */
   </style>
 </head>
 <body>
@@ -184,136 +190,144 @@
                 echo $activedep;
               } elseif (isset($activejob)){
                 echo $activejob;
+              } elseif (isset($activeview)){
+                echo $activeview;
               } ?>">
-                <a href="#">
-                  <i class="metismenu-icon pe-7s-notebook"></i>
-                  Post
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                  <li>
-                    <a href="<?= base_url('Department/addDepartment') ?>" class="<?php if(isset($activedep)){ echo $activedep; } ?>">
-                      <i class="metismenu-icon"></i>
-                      Add Department
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('Portal/addJob') ?>" class="<?php if(isset($activejob)){ echo $activejob; } ?>">
-                      <i class="metismenu-icon"></i>
-                      Post Job
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="app-sidebar__heading">Candidates Listings</li>
-              <li>
-                <a href="#">
-                  <i class="metismenu-icon pe-7s-users"></i>
-                  Candidates
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                  <li>
-                    <a href="<?= base_url('CandidateList/viewCan') ?>">
-                      <i class="metismenu-icon"></i>
-                      View Candidates
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('CandidateList/sortCan') ?>">
-                      <i class="metismenu-icon"></i>
-                      SortList Candidates
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('CandidateList/interCan') ?>">
-                      <i class="metismenu-icon"></i>
-                      Interview
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="app-sidebar__heading">Candidates Filtering</li>
-              <li>
-                <a href="#">
-                  <i class="metismenu-icon pe-7s-news-paper"></i>
-                  Offerings
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                  <li>
-                    <a href="<?= base_url('OfferCandidates/offerCan') ?>">
-                      <i class="metismenu-icon"></i>
-                      Offer Candidates
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('OfferCandidates/offerLet') ?>">
-                      <i class="metismenu-icon"></i>
-                      Offer Letter
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('OfferCandidates/onboCan') ?>">
-                      <i class="metismenu-icon"></i>
-                      Onboard Candidates
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="app-sidebar__heading">Flow Charts</li>
-              <li>
-                <a href="#">
-                  <i class="metismenu-icon pe-7s-graph3"></i>
-                  Flowchart Basics
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                  <li>
-                    <a href="<?= base_url('FlowChart/flowCreateView') ?>">
-                      <i class="metismenu-icon"></i>
-                      Create/View FlowChart
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('FlowChart/viewFlows') ?>">
-                      <i class="metismenu-icon"></i>
-                      View Flows
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="app-sidebar__heading">About Us</li>
-              <li>
-                <a href="#">
-                  <i class="metismenu-icon pe-7s-help1"></i>
-                  Help
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                  <li>
-                    <a href="<?= base_url('Dashboard/help') ?>">
-                      <i class="metismenu-icon"></i>
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('Dashboard/help') ?>">
-                      <i class="metismenu-icon"></i>
-                      Help
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('Dashboard/help') ?>">
-                      <i class="metismenu-icon"></i>
-                      User Manual
-                    </a>
-                  </li>
-                </ul>
-              </li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-notebook"></i>
+                Post
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('Department/addDepartment') ?>" class="<?php if(isset($activedep)){ echo $activedep; } ?>">
+                    <i class="metismenu-icon"></i>
+                    Add Department
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Portal/addJob') ?>" class="<?php if(isset($activejob)){ echo $activejob; } ?>">
+                    <i class="metismenu-icon"></i>
+                    Post Job
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Portal/viewJob') ?>" class="<?php if(isset($activeview)){ echo $activeview; } ?>">
+                    <i class="metismenu-icon"></i>
+                    View Job
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="app-sidebar__heading">Candidates Listings</li>
+            <li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-users"></i>
+                Candidates
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('CandidateList/viewCan') ?>">
+                    <i class="metismenu-icon"></i>
+                    View Candidates
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('CandidateList/sortCan') ?>">
+                    <i class="metismenu-icon"></i>
+                    SortList Candidates
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('CandidateList/interCan') ?>">
+                    <i class="metismenu-icon"></i>
+                    Interview
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="app-sidebar__heading">Candidates Filtering</li>
+            <li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-news-paper"></i>
+                Offerings
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('OfferCandidates/offerCan') ?>">
+                    <i class="metismenu-icon"></i>
+                    Offer Candidates
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('OfferCandidates/offerLet') ?>">
+                    <i class="metismenu-icon"></i>
+                    Offer Letter
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('OfferCandidates/onboCan') ?>">
+                    <i class="metismenu-icon"></i>
+                    Onboard Candidates
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="app-sidebar__heading">Flow Charts</li>
+            <li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-graph3"></i>
+                Flowchart Basics
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('FlowChart/flowCreateView') ?>">
+                    <i class="metismenu-icon"></i>
+                    Create/View FlowChart
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('FlowChart/viewFlows') ?>">
+                    <i class="metismenu-icon"></i>
+                    View Flows
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="app-sidebar__heading">About Us</li>
+            <li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-help1"></i>
+                Help
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('Dashboard/help') ?>">
+                    <i class="metismenu-icon"></i>
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Dashboard/help') ?>">
+                    <i class="metismenu-icon"></i>
+                    Help
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Dashboard/help') ?>">
+                    <i class="metismenu-icon"></i>
+                    User Manual
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-            </ul>
-          </div>
+          </ul>
         </div>
       </div>
-      <div class="app-main__outer">
+    </div>
+    <div class="app-main__outer">
