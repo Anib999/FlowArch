@@ -49,4 +49,9 @@ class Login extends CI_Controller {
     redirect('Login/login');
   }
 
+  public function register(){
+    $data['title'] = 'Register';
+    $this->load->view('dynamicContent/login/registration',$data);
+  }
+
 }

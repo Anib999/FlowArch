@@ -62,7 +62,6 @@ class Department extends CI_Controller {
     if($this->form_validation->run() === FALSE){
       $this->addDepartment();
     }else{
-      //'password'=>$this->input->post('password'),
       $data = array(
         'username'=>$this->input->post('username'),
         'password'=>password_hash(($this->input->post('password')), PASSWORD_BCRYPT, $options),

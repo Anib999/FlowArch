@@ -70,12 +70,6 @@
   </div>
   <!--Title-->
 
-  <!--This needs to be dynamic coming from flowchart-->
-  <div class="row">
-
-  </div>
-  <!--This needs to be dynamic coming from flowchart-->
-
   <div class="col-lg-6">
     <nav class="" aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -102,10 +96,11 @@
         <thead>
           <th>Id</th>
           <th>Name</th>
-          <!-- <th>Applied Position</th>
-          <th>Experience</th>
-          <th>Expected Salary</th> -->
           <th>Skills</th>
+          <th>Email</th>
+          <th>Applied Position</th>
+          <th>Experience</th>
+          <th>Expected Salary</th>
           <th>Options</th>
         </thead>
       </table>

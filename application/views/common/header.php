@@ -13,6 +13,7 @@
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="<?= base_url('assets/js/jquery/jquery-3.4.1.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
   <style media="screen">
   .closed-sidebar:not(.closed-sidebar-mobile) .smalllogo {
     display: none;

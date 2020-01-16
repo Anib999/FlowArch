@@ -1,4 +1,3 @@
-<script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url('assets/css/datatables/jquery.dataTables.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/datatables/responsive.dataTables.min.css') ?>">
 <!--MainInner-->
