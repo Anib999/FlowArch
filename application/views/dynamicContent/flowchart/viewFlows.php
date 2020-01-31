@@ -92,6 +92,6 @@
       </div>
     </div>
   </div>
-
+  <small>Note: this works only on default mode unedited</small>
 </div>
 <script src="<?= base_url('assets/js/flowchart/viewFlows.js') ?>" charset="utf-8"></script>

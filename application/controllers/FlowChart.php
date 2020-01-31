@@ -79,6 +79,7 @@ class FlowChart extends CI_Controller {
     return array(
       array(
         'title'=>'HR',
+        'id'=>0,
         'inputs'=>0,
         'outputs'=>1,
         'label'=>'Human Resource',
@@ -86,6 +87,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'Post Job',
+        'id'=>1,
         'inputs'=>1,
         'outputs'=>2,
         'label'=>'Post Job',
@@ -93,6 +95,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'LinkedIn',
+        'id'=>2,
         'inputs'=>1,
         'outputs'=>0,
         'label'=>'Job Portal',
@@ -100,6 +103,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'View Candidates',
+        'id'=>3,
         'inputs'=>1,
         'outputs'=>1,
         'label'=>'View Candidates',
@@ -107,6 +111,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'SortList',
+        'id'=>4,
         'inputs'=>1,
         'outputs'=>2,
         'label'=>'SortList Candidate',
@@ -114,6 +119,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'Interview',
+        'id'=>5,
         'inputs'=>1,
         'outputs'=>1,
         'label'=>'Interview Candidate',
@@ -121,6 +127,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'Offer Candidate',
+        'id'=>6,
         'inputs'=>1,
         'outputs'=>1,
         'label'=>'Offer Candidate',
@@ -128,6 +135,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'Offer Letter',
+        'id'=>7,
         'inputs'=>2,
         'outputs'=>1,
         'label'=>'Offer Letter',
@@ -135,6 +143,7 @@ class FlowChart extends CI_Controller {
       ),
       array(
         'title'=>'Onboarding',
+        'id'=>8,
         'inputs'=>1,
         'outputs'=>0,
         'label'=>'Onboarding',

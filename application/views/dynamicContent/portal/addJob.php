@@ -83,24 +83,24 @@
             <div class="position-relative form-group">
               <label for="job_type" class="">Job Type</label>
               <select class="form-control" name="">
-                <option></option>
-                <option value="">Full Time</option>
-                <option value="">Part Time</option>
-                <option value="">Intership</option>
-                <option value="">Freelancer</option>
+                 <option value="" disabled selected>Select your option</option>
+                <option value="1">Full Time</option>
+                <option value="2">Part Time</option>
+                <option value="3">Intership</option>
+                <option value="4">Freelancer</option>
               </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="position-relative form-group">
               <label for="job_email" class="">Email</label>
-              <input name="job_email" id="job_email" placeholder="Your Email" type="text" class="form-control" required>
+              <input name="job_email" id="job_email" placeholder="abc@example.com" type="email" class="form-control" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="position-relative form-group">
               <label for="job_location" class="">Location</label>
-              <input name="job_location" id="job_location" placeholder="Job Location" type="text" class="form-control" required>
+              <input name="job_location" id="job_location" placeholder="Full Location" type="text" class="form-control" required>
             </div>
           </div>
           <div class="col-md-12">

@@ -10,8 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
   <meta name="description" content="">
   <meta name="msapplication-tap-highlight" content="no">
+  <link rel="icon" href="<?= base_url('assets/images/smalllogo2.png') ?>">
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <script src="<?= base_url('assets/js/jquery/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
   <style media="screen">
@@ -207,6 +208,12 @@
                   </a>
                 </li>
                 <li>
+                  <a href="">
+                    <i class="metismenu-icon"></i>
+                    Post Departmentwise Job
+                  </a>
+                </li>
+                <li>
                   <a href="<?= base_url('Portal/addJob') ?>" class="<?php if(isset($activejob)){ echo $activejob; } ?>">
                     <i class="metismenu-icon"></i>
                     Post Job
@@ -272,6 +279,22 @@
                   <a href="<?= base_url('OfferCandidates/onboCan') ?>">
                     <i class="metismenu-icon"></i>
                     Onboard Candidates
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="app-sidebar__heading">Status Checker</li>
+            <li>
+              <a href="#">
+                <i class="metismenu-icon pe-7s-news-paper"></i>
+                Check Status
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                <li>
+                  <a href="<?= base_url('Lister/drag') ?>">
+                    <i class="metismenu-icon"></i>
+                    View/Update Status
                   </a>
                 </li>
               </ul>

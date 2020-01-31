@@ -95,7 +95,6 @@ $(document).ready(function(){
   $('body').on('click','.flowchart-operator.selected',function(operatorId){
     $('#after-click').css('width','250px');
     let opId = flowchart.flowchart('getSelectedOperatorId');
-    operatorTitleId
     if(opId != null){
       let opTitle = flowchart.flowchart('getOperatorTitle',opId);
       let opData = flowchart.flowchart('getOperatorData',opId);
@@ -139,7 +138,7 @@ $(document).ready(function(){
   }
 
   //draggable
-  let operatorId = 0;
+
   $draggableOperators.draggable({
     cursor: "move",
     opacity: 0.7,
@@ -173,8 +172,12 @@ $(document).ready(function(){
           let data = getOperatorData($this);
           data.left = relativeLeft;
           data.top = relativeTop;
-
-          flowchart.flowchart('addOperator', data);
+          if(flowchart.flowchart('doesOperatorExists',$this.data('nb-id'))){
+            let operatorId = 0;
+            flowchart.flowchart('addOperator', data);
+          }else{
+            flowchart.flowchart('createOperator',$this.data('nb-id'), data)
+          }
         }
       }
     });

@@ -119,6 +119,7 @@
           <div class="btn-actions-pane-right">
             <div role="group" class="btn-group-sm btn-group">
               <button class="active btn btn-focus">This Week</button>
+              <button class="btn btn-focus">This Month</button>
               <button class="btn btn-focus">Overall</button>
             </div>
           </div>
@@ -142,7 +143,8 @@
   </div>
 
 </div>
-<!--MainIneer-->
+<!--MainInner-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/datatables/jquery.dataTables.min.js') ?>" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/datatables/dataTables.responsive.min.js') ?>" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/portal/jobDatatable.js') ?>" charset="utf-8"></script>

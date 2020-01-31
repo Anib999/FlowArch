@@ -158,11 +158,7 @@
         </div>
         <div class="position-relative form-group">
           <label for="skills" class="">Skills</label>
-          <input type="text" name="skills" id="skills" placeholder="Skills" class="form-control">
-        </div>
-        <div class="position-relative form-group">
-          <label for="skills" class="">Skills</label>
-          <input type="text" data-role="tagsinput" class="form-control" name="skills" value="" placeholder="Add Skills using comma">
+          <input type="text" name="skills" id="skills" placeholder="Example, Example" class="form-control">
         </div>
         <input type="submit" class="mt-2 btn btn-primary pull-right" name="" value="Add Candidate">
       </form>
@@ -170,5 +166,3 @@
   </div>
 
 </div>
-
-<script src="<?= base_url('assets/js/tagsinput/tagsinput.js') ?>" charset="utf-8"></script>

@@ -1,0 +1,60 @@
+function reload() {
+  let docElem = document.documentElement;
+    let kanban = document.querySelector('.kanban-board');
+    let board = kanban.querySelector('.board');
+    let itemContainers = Array.prototype.slice.call(kanban.querySelectorAll('.board-column-content'));
+    let dragCounter = 0;
+
+    itemContainers.forEach(function (container) {
+
+      let muuri = new Muuri(container, {
+        items: '.board-item',
+        layoutDuration: 400,
+        layoutEasing: 'ease',
+        dragEnabled: true,
+        dragSort: function () {
+          return columnGrids;
+        },
+        dragStartPredicate: {
+          distance: 10,
+          delay: 1,
+        },
+        dragSortInterval: 0,
+        dragContainer: document.body,
+        dragReleaseDuration: 400,
+        dragReleaseEasing: 'ease',
+        dragSortPredicate: {
+          action: 'move'
+        },
+      })
+      .on('dragStart', function (item) {
+        ++dragCounter;
+        docElem.classList.add('dragging');
+        item.getElement().style.width = item.getWidth() + 'px';
+        item.getElement().style.height = item.getHeight() + 'px';
+      })
+      .on('dragEnd', function (item) {
+        if (--dragCounter < 1) {
+          docElem.classList.remove('dragging');
+        }
+      })
+      .on('dragReleaseEnd', function (item) {
+        item.getElement().style.width = '';
+        item.getElement().style.height = '';
+        columnGrids.forEach(function (muuri) {
+          muuri.refreshItems();
+        });
+      })
+      .on('layoutStart', function () {
+        boardGrid.refreshItems().layout();
+      })
+
+      columnGrids.push(muuri);
+    });
+}
+
+function addColumn() {
+  let board = generateBoard(4);
+  boardGrid.add([board]);
+  reload();
+}

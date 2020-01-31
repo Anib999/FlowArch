@@ -1,11 +1,7 @@
 <script src="<?= base_url('assets/js/jquery/jquery-ui.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/jquery.flowchart.css') ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/flowchart/flowchart.css') ?>">
-<!-- <style>
-.icon_exp .fa{
-font-size: 22px;
-}
-</style> -->
+
 <div class="app-main__inner">
   <!--Title-->
   <div class="app-page-title">
@@ -80,7 +76,7 @@ font-size: 22px;
 
       <?php foreach ($operators as $operator) { ?>
         <div class="col-md-2 col-sm-4 col-4">
-          <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-inputs='<?= $operator['inputs'] ?>' data-nb-outputs='<?= $operator['outputs'] ?>'  data-title="<?= $operator['title'] ?>">
+          <div class="draggable_operator ui-draggable ui-draggable-handle" data-nb-id='<?= $operator['id'] ?>' data-nb-inputs='<?= $operator['inputs'] ?>' data-nb-outputs='<?= $operator['outputs'] ?>'  data-title="<?= $operator['title'] ?>">
             <div class="widget-content">
               <div class="widget-content-wrapper">
                 <div class="widget-content-left text-center icon_exp">

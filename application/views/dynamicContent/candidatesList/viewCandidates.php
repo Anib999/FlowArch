@@ -88,7 +88,6 @@
       </ol>
     </nav>
   </div>
-
   <div class="main-card mb-3 card">
     <div class="card-body">
       <h5 class="card-title">View</h5>

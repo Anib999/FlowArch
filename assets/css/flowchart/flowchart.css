@@ -1,6 +1,5 @@
 #flowDiv{
   height: 550px;
-  width: 1085fpx;
   border: 1px solid #BBB;
   margin-bottom: 10px;
   background-color: #FBFBFB;
@@ -8,6 +7,7 @@
   background-repeat: repeat;
   background-size: 30px 30px;
 }
+
 .draggable_operators_divs{
   width: 226px;
   background-color: #FFF;
@@ -19,6 +19,7 @@
   position: absolute;
   z-index: 2;
 }
+
 .draggable_operator{
   width: 100%;
   padding: 5px;
@@ -30,31 +31,38 @@
   white-space: nowrap;
   cursor: move;
 }
+
 .draggable_operator:hover{
   cursor: pointer;
   box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.2);
   transform: scale(1.01);
   overflow: hidden;
 }
+
 .main {
   margin-left: 226px;
   padding: 0px 10px;
 }
+
 .flowchart-operator-title{
   text-align: center;
 }
+
 .flowchart-operator{
   border-radius: 5px;
   width: 150px;
   /* remove box-shadow if hinders the operator */
   /* box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2); */
 }
+
 .flowchart-operator.selected{
   border: 2px solid #217CE8;
 }
+
 #flowchart_data {
   height: 400px;
 }
+
 #after-click  {
   width: 0;
   position: fixed;
@@ -66,11 +74,13 @@
   overflow-x: hidden;
   transition: 0.5s;
 }
+
 #closeB{
   cursor: pointer;
   position: absolute;
   right: 10px;
 }
+
 .tabs .tab a:hover{
   text-decoration: none;
 }
@@ -86,9 +96,11 @@
 .draggable_operator.ui-draggable.ui-draggable-handle{
   display: inline-flex;
 }
+
 .descr{
   margin-left: -115px;
 }
+
 #foo{
   top: 15px;
   position: absolute;

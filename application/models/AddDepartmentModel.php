@@ -13,9 +13,17 @@ class AddDepartmentModel extends CI_Model {
   }
 
   public function getAllDepartments(){
+    $this->db->select('id,username,dep_type');
     $query = $this->db->get('archtab');
     $result = $query->result();
     return $result;
+  }
+
+  public function getDepartmentUserById($id){
+    $this->db->where('id',$id);
+    $this->db->select('id,username,dep_type');
+    $query = $this->db->get('archtab')->row();
+    return $query;
   }
 
 }

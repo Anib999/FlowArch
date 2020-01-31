@@ -92,8 +92,12 @@
       <h5 class="card-title">Listings</h5>
       <table id="sortTab">
         <thead>
-          <th>id</th>
-          <th>aces</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Experience</th>
+          <th>Options</th>
         </thead>
       </table>
 

@@ -11,7 +11,6 @@ $(document).ready(function(){
       let parsedRes = JSON.parse(res);
       let resOpe = parsedRes.operators;
       let resLink = parsedRes.links;
-
       console.log(resLink);
 
     },
