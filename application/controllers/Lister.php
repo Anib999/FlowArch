@@ -17,6 +17,14 @@ class Lister extends CI_Controller {
     $this->load->view('common/footer');
 	}
 
+	public function insertKanbanData(){
+		$data = array(
+			'data'=>'Title',
+			'status'=>$this->input->post('status')
+		);
+		$this->kmodel->insertKanbanData($data);
+	}
+
 	public function getAllKanbanData(){
 		$getKan = $this->kmodel->getAllKanbanData();
 		echo json_encode($getKan);

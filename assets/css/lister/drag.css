@@ -87,3 +87,15 @@
     display: none;
   }
 }
+.board-column-footer {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  padding: 0 20px;
+  text-align: center;
+  background: #cccccc;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 0 0 3px 3px;
+}

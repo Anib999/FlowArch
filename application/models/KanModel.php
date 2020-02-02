@@ -9,7 +9,7 @@ class KanModel extends CI_Model {
   }
 
   public function insertKanbanData($data){
-
+    $this->db->insert('kanbantab',$data);
   }
 
   public function getAllKanbanData(){

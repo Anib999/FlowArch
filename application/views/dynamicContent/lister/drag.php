@@ -16,23 +16,19 @@
     </div>
   </div>
   <!--Title-->
-  <div class="kanban-board">
+<button type="button" id="addCol" name="button">Add</button>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main-card mb-3 card">
+        <div class="card-header">Job Stages</div>
+        <div class="card-body">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="main-card mb-3 card">
-          <div class="card-header">Job Stages</div>
-          <form method="post" >
-            <div class="card-body">
-              <div class="board">
-
-              </div>
+          <div class="kanban-board">
+            <div class="board">
 
             </div>
-            <div class="card-footer text-muted">
-              <input type="submit" name="savekan" class="btn btn-info" value="Save Kanban">
-            </div>
-          </form>
+          </div>
+
         </div>
       </div>
     </div>
@@ -41,4 +37,4 @@
 </div>
 
 <script src="<?= base_url('assets/js/lister/muuri.js') ?>" charset="utf-8"></script>
-<script src="<?= base_url('assets/js/lister/demo2.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/lister/dragger.js') ?>" charset="utf-8"></script>

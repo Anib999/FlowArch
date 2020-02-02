@@ -12,7 +12,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <link rel="icon" href="<?= base_url('assets/images/smalllogo2.png') ?>">
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="<?= base_url('assets/js/jquery/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
   <style media="screen">
@@ -29,7 +29,7 @@
 </head>
 <body>
   <input type="text" id="base_url" name="" value="<?= base_url() ?>" style="display:none;">
-  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar"> <!-- closed-sidebar fixed-footer-->
 
     <div class="app-header header-shadow">
       <div class="app-header__logo">
@@ -194,6 +194,8 @@
                 echo $activejob;
               } elseif (isset($activeview)){
                 echo $activeview;
+              } elseif (isset($activeview)){
+                echo $activeview;
               } ?>">
               <a href="#">
                 <i class="metismenu-icon pe-7s-notebook"></i>
@@ -208,7 +210,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="<?= base_url('Department/addDepwise') ?>">
                     <i class="metismenu-icon"></i>
                     Post Departmentwise Job
                   </a>

@@ -30,6 +30,7 @@
 </div>
 </div>
 <script src="<?= base_url('assets/js/main.js') ?>"></script>
+<!-- <script src="<?= base_url('assets/js/autoclosesidebar.js') ?>" charset="utf-8"></script> -->
 </body>
 </html>
 

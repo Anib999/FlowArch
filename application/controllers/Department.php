@@ -23,6 +23,17 @@ class Department extends CI_Controller {
     $this->load->view('common/footer');
   }
 
+  public function addDepwise(){
+    $data = 'Add Dep Job';
+    $classer = 'mm-active';
+		$this->load->view('common/header',[
+			'title' => $data,
+      'activedepwise' =>$classer
+		]);
+    $this->load->view('dynamicContent/department/addDepwise');
+    $this->load->view('common/footer');
+  }
+
   public function insertDep(){
     $this->load->library('form_validation');
 
