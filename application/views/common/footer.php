@@ -18,7 +18,7 @@
       <div class="app-footer-right">
         <ul class="nav">
           <li class="nav-item">
-              <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="" style="height:21px;">
+            <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="" style="height:21px;">
           </li>
         </ul>
       </div>
@@ -116,3 +116,71 @@
   </div>
 </div>
 <!-- Job Modal -->
+
+<!-- Add Job Modal -->
+<div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Job</h5>
+      </div>
+      <form method="post" id="insertJobData">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="modal_job_title" class="">Job Title</label>
+                </div>
+                <div class="col-md-9">
+                  <input name="modal_job_title" id="modal_job_title" placeholder="Job Title" type="text" class="form-control" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="modal_job_description" class="">Job Description</label>
+                </div>
+                <div class="col-md-9">
+                  <textarea name="modal_job_description" id="modal_job_description" class="form-control"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="job_priority" class="">Priority</label>
+              <select class="form-control" name="job_priority" id="job_priority">
+                <option value=" ">None</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="job_stage" class="">Job Stage</label>
+              <!-- <select class="form-control" name="job_stage">
+                <option value="0">To Do</option>
+                <option value="1">Working</option>
+                <option value="2">Done</option>
+              </select> -->
+              <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="save_job" name="save_job" class="btn btn-primary">Save Job</button>
+        <button type="button" name="cancel_job" id="cancel_job" data-dismiss="modal" class="btn btn-default">Cancel</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Add Job Modal -->

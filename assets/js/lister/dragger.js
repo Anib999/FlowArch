@@ -3,31 +3,37 @@ let boardGrid;
 let columnGrids = [];
 
 document.addEventListener('DOMContentLoaded', function () {
+  jobCaller();
 
-  $.ajax({
-    url : base_url+'Lister/getAllKanbanData',
-    dataType: 'json',
-    method: 'post',
-    success: function(res){
-      let newCount = '';
-      let gridKeys = res.map(item => item.status)
-      .filter((value, index, self) => self.indexOf(value) === index).sort();
-      boardMake(gridKeys);
-      //addColumn(gridKeys);
-      for (let resDa in res) {
-        console.log(res[resDa]);
-        if(res[resDa].status){
-          let resItem = generateBoardItem(res[resDa]);
-          columnGrids['g_'+res[resDa].status].add([resItem]);
-          console.log(res[resDa].status);
-          console.log('added');
+  function jobCaller(){
+    $.ajax({
+      url : base_url+'Lister/getAllKanbanData',
+      dataType: 'json',
+      method: 'post',
+      success: function(res){
+        let newCount = '';
+        let kanData = res.kandata;
+        let kanTitle = res.kantitle;
+
+        let gridKeys = res;
+
+        boardMake(kanTitle);
+        //addColumn(gridKeys);
+        for (let resDa in kanData) {
+          //console.log(res[resDa]);
+          if(kanData[resDa].status){
+            let resItem = generateBoardItem(kanData[resDa]);
+            columnGrids['g_'+kanData[resDa].status].add([resItem]);
+            // console.log(res[resDa].status);
+            // console.log('added');
+          }
         }
+      },
+      error: function(err){
+        console.log('error');
       }
-    },
-    error: function(err){
-      console.log('error');
-    }
-  });
+    });
+  }
 
   function boardMake(gridKeysVal){
     boardGrid = new Muuri('.board', {
@@ -108,110 +114,132 @@ document.addEventListener('DOMContentLoaded', function () {
           columnGrids[i].refreshItems()
         });
         /*columnGrids.forEach(function (muuri) {
-          muuri.refreshItems();
-        });*/
-      })
-      .on('layoutStart', function () {
-        boardGrid.refreshItems().layout();
-      })
-      //columnGrids.push(muuri);
-      columnGrids['g_'+container.dataset.id] = muuri;
-    });
-  }
-
-  function generateBoardItem(item) {
-    //console.log(item);
-    let itemElem = document.createElement('div');
-    let itemTemplate = '' +
-    '<div class="board-item" data-id="'+ item.id + '" data-status="'+item.status+'">' +
-    '<div class="board-item-content">' +
-    '<p class="board-title">' + item.data + '</p>' +
-    '</div>' +
-    '</div>';
-
-    itemElem.innerHTML = itemTemplate;
-    return itemElem.firstChild;
-  }
-
-  function generateBoards(count) {
-    let boards = [];
-    //console.log(count);
-    //for (let i = 0; i < count; i++) {
-    count.forEach(i=>{
-      //console.log(i);
-      let board = generateBoard(i);
-      boards.push(board);
+        muuri.refreshItems();
+      });*/
     })
-    return boards;
-  }
+    .on('layoutStart', function () {
+      boardGrid.refreshItems().layout();
+    })
+    //columnGrids.push(muuri);
+    columnGrids['g_'+container.dataset.id] = muuri;
+  });
+}
 
-  function generateBoard(index) {
-    let itemElem = document.createElement('div');
-    let itemTemplate = '' +
-    '<div class="board-column">' +
-    '<div class="board-column-header">' + index + '</div>' +
-    '<div class="board-column-content" data-id="' + index + '"></div>' +
-    '<div class="board-column-footer addJob" data-fid="'+index+'"> Add a Job </div>'+
-    '</div>';
-    itemElem.innerHTML = itemTemplate;
-    return itemElem.firstChild;
-  }
+function generateBoardItem(item) {
+  //console.log(item);
+  let itemElem = document.createElement('div');
+  let itemTemplate = '' +
+  '<div class="board-item" data-id="'+ item.id + '" data-status="'+item.status+'">' +
+  '<div class="board-item-content">' +
+  '<p class="board-title">' + item.data + '</p>' +
+  '</div>' +
+  '</div>';
 
-  function generateCard(){
-    let itemElem = document.createElement('div');
-    let itemTemplate = '' +
-    '<div class="board-item" data-id="" data-status="">' +
-    '<div class="board-item-content">' +
-    '<p class="board-title">Title</p>' +
-    '</div>' +
-    '</div>';
+  itemElem.innerHTML = itemTemplate;
+  return itemElem.firstChild;
+}
 
-    itemElem.innerHTML = itemTemplate;
-    return itemElem.firstChild;
-  }
+function generateBoards(count) {
+  let boards = [];
+  console.log(count);
+  //for (let i = 0; i < count; i++) {
+  count.forEach(i=>{
+    //console.log(i);
+    let board = generateBoard(i);
+    boards.push(board);
+  })
+  return boards;
+}
 
-  $('#addCol').on('click',function(e){
-    e.preventDefault();
-    var gridKeys = Object.keys(columnGrids);
-    var newGridKey = gridKeys[gridKeys.length-1].split('_')[1]+1;
+function generateBoard(index) {
+  let itemElem = document.createElement('div');
+  let itemTemplate = '' +
+  '<div class="board-column">' +
+  '<div class="board-column-header">' + index.title + '</div>' +
+  '<div class="board-column-content" data-id="' + index.id + '"></div>' +
+  '<div class="board-column-footer addJob" data-fid="'+index.id+'"> Add a Job </div>'+
+  '</div>';
+  itemElem.innerHTML = itemTemplate;
+  return itemElem.firstChild;
+}
 
-    while(true){
-      if(gridKeys['g_'+newGridKey] == undefined){
-        break;
-      }else{
-        newGridKey ++;
-      }
+function generateCard(){
+  let itemElem = document.createElement('div');
+  let itemTemplate = '' +
+  '<div class="board-item" data-id="" data-status="">' +
+  '<div class="board-item-content">' +
+  '<p class="board-title">Title</p>' +
+  '</div>' +
+  '</div>';
+
+  itemElem.innerHTML = itemTemplate;
+  return itemElem.firstChild;
+}
+
+$('#addCol').on('click',function(e){
+  e.preventDefault();
+  var gridKeys = Object.keys(columnGrids);
+  var newGridKey = gridKeys[gridKeys.length-1].split('_')[1]+1;
+
+  while(true){
+    if(gridKeys['g_'+newGridKey] == undefined){
+      break;
+    }else{
+      newGridKey ++;
     }
-
-    addColumn(newGridKey);
-  })
-
-  $('body').on('click', '.addJob', function(e){
-    let status = $(this).attr('data-fid');
-    let cardGen = generateCard();
-    columnGrids['g_'+status].add([cardGen]);
-
-    $.ajax({
-      url:base_url+"Lister/insertKanbanData",
-      data: {status:status},
-      method:'post',
-      success: function(res){
-        console.log('success');
-      },
-      error: function(res){
-        console.log('error');
-      }
-    })
-
-  })
-
-  function addColumn(gridKeysVal){
-    console.log(gridKeysVal);
-    let board = generateBoard(gridKeysVal);
-
-      boardGrid.add([board]);
-      //todo
-      columnGrids['g_'+gridKeysVal];
   }
+
+  addColumn(newGridKey);
+})
+
+$('body').on('click', '.addJob', function(e){
+  let status = $(this).attr('data-fid');
+  let cardGen = generateCard();
+  columnGrids['g_'+status].add([cardGen]);
+
+  $.ajax({
+    url:base_url+"Lister/insertKanbanData",
+    data: {status:status},
+    method:'post',
+    success: function(res){
+      console.log('success');
+    },
+    error: function(res){
+      console.log('error');
+    }
+  })
+
+})
+
+function addColumn(gridKeysVal){
+  console.log(gridKeysVal);
+  let board = generateBoard(gridKeysVal);
+
+  boardGrid.add([board]);
+  //todo
+  columnGrids['g_'+gridKeysVal];
+}
+
+$('#insertJobData').on('submit',function(e){
+  e.preventDefault();
+  $('#save_job').attr('disabled',true);
+  $.ajax({
+    url: base_url+"Lister/insertKanbanData",
+    method: 'post',
+    data: $('#insertJobData').serializeArray(),
+    success: function(res){
+      jobCaller();
+      setTimeout(function(e){
+        $('#cancel_job').click();
+        console.log('job saved');
+        $('#save_job').removeAttr('disabled');
+      },2000);
+
+    },
+    error: function(res){
+      console.log('error saving job');
+    }
+  })
+})
 
 });

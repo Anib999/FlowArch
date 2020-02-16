@@ -12,8 +12,28 @@ class KanModel extends CI_Model {
     $this->db->insert('kanbantab',$data);
   }
 
+  // public function getAllKanbanData(){
+  //   $query = $this->db->get('kanbantab');
+  //   $result = $query->result();
+  //   return $result;
+  // }
+
   public function getAllKanbanData(){
-    $query = $this->db->get('kanbantab');
+    $query = $this->db->query('SELECT
+      kd.id,
+      kd.data,
+      kd.status,
+      kt.title
+      FROM `kanbantab` AS kd
+        JOIN `kantitle` AS kt
+          ON kd.status = kt.id
+    ');
+    $result = $query->result();
+    return $result;
+  }
+
+  public function getAllKanTitle(){
+    $query = $this->db->get('kantitle');
     $result = $query->result();
     return $result;
   }

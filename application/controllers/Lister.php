@@ -19,15 +19,20 @@ class Lister extends CI_Controller {
 
 	public function insertKanbanData(){
 		$data = array(
-			'data'=>'Title',
-			'status'=>$this->input->post('status')
+			'data'=>$this->input->post('modal_job_title'),
+			'job_description'=>$this->input->post('modal_job_description'),
+			'job_priority'=>$this->input->post('job_priority'),
+			'job_stage'=>$this->input->post('job_stage'),
+			'status'=>0
 		);
 		$this->kmodel->insertKanbanData($data);
 	}
 
 	public function getAllKanbanData(){
 		$getKan = $this->kmodel->getAllKanbanData();
-		echo json_encode($getKan);
+		$getKanTitle = $this->kmodel->getAllKanTitle();
+
+		echo json_encode(array('kandata'=>$getKan,'kantitle'=>$getKanTitle));
 	}
 
 	public function updateKanbanData(){
