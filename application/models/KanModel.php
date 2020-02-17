@@ -23,6 +23,7 @@ class KanModel extends CI_Model {
       kd.id,
       kd.data,
       kd.status,
+      kd.job_priority,
       kt.title
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt
@@ -38,9 +39,30 @@ class KanModel extends CI_Model {
     return $result;
   }
 
+  public function getKanbanDataId($id){
+    $query = $this->db->query('SELECT
+      kd.id,
+      kd.data,
+      kd.job_description,
+      kd.job_priority,
+      kd.job_stage,
+      kt.title
+      FROM `kanbantab` AS kd
+        JOIN `kantitle` AS kt
+          ON kd.status = kt.id
+      WHERE kd.id = '.$id.'
+    ')->row();
+    return $query;
+  }
+
   public function updateKanbanData($id, $data){
     $this->db->where('id',$id);
     $this->db->update('kanbantab',$data);
+  }
+
+  public function deleteKanbanById($id){
+    $this->db->where('id',$id);
+    $this->db->delete('kanbantab');
   }
 
 }

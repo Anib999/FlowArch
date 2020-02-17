@@ -16,11 +16,13 @@
     </div>
   </div>
   <!--Title-->
+  
   <div class="row">
     <div class="col-md-12">
-      <button type="button" data-toggle="modal" data-target="#addJobModal" name="button">Add a job</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJobModal" name="button">Add a job</button>
     </div>
   </div>
+  <br />
   <!-- <button type="button" id="addCol" name="button">Add</button> -->
   <div class="row">
     <div class="col-md-12">

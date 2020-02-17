@@ -26,7 +26,7 @@
   overflow: hidden;
   padding: 0 20px;
   text-align: center;
-  background: #333;
+  background: rgb(95, 158, 160);
   color: #fff;
   border-radius: 3px 3px 0 0;
 }
@@ -44,10 +44,10 @@
 .board-column.done .board-column-header {
   background: #2ac06d;
 }
-.board-column-content-wrapper {
+.board-column-content {
   position: relative;
-  /* max-height: 300px; */
-  /* overflow-y: auto; */
+  max-height: 300px;
+  overflow-y: auto;
 }
 .board-column-content {
   position: relative;
@@ -96,6 +96,23 @@
   text-align: center;
   background: #cccccc;
   color: #000000;
-  cursor: pointer;
+  /* cursor: pointer; */
   border-radius: 0 0 3px 3px;
+}
+.Low>div{
+  color: #fff;
+  background-color: rgba(22, 170, 255, 0.58);
+}
+.Medium>div{
+  color: #fff;
+  background-color: rgba(247, 185, 36, 0.60);
+}
+.High>div{
+  color: #fff;
+  background-color: rgba(217, 37, 80, 0.60);
+}
+.fa-trash:hover{
+  cursor: pointer;
+  transform: scale(1.5);
+  color: rgb(0, 0, 0);
 }

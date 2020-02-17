@@ -15,17 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let kanData = res.kandata;
         let kanTitle = res.kantitle;
 
-        let gridKeys = res;
-
         boardMake(kanTitle);
-        //addColumn(gridKeys);
+
         for (let resDa in kanData) {
-          //console.log(res[resDa]);
           if(kanData[resDa].status){
             let resItem = generateBoardItem(kanData[resDa]);
             columnGrids['g_'+kanData[resDa].status].add([resItem]);
-            // console.log(res[resDa].status);
-            // console.log('added');
           }
         }
       },
@@ -126,10 +121,10 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 function generateBoardItem(item) {
-  //console.log(item);
+  console.log(item);
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
-  '<div class="board-item" data-id="'+ item.id + '" data-status="'+item.status+'">' +
+  '<div class="board-item contner '+item.job_priority+'" data-id="'+ item.id + '" data-status="'+item.status+'" data-toggle="modal" data-target="#viewJobModal" >' +
   '<div class="board-item-content">' +
   '<p class="board-title">' + item.data + '</p>' +
   '</div>' +
@@ -141,10 +136,7 @@ function generateBoardItem(item) {
 
 function generateBoards(count) {
   let boards = [];
-  console.log(count);
-  //for (let i = 0; i < count; i++) {
   count.forEach(i=>{
-    //console.log(i);
     let board = generateBoard(i);
     boards.push(board);
   })
@@ -154,21 +146,24 @@ function generateBoards(count) {
 function generateBoard(index) {
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
-  '<div class="board-column">' +
-  '<div class="board-column-header">' + index.title + '</div>' +
+  '<div class="board-column '+index.title.toLowerCase() +'">' +
+  '<div class="board-column-header">' + index.title.toUpperCase() + '<span class="pull-right"><i class="fa fa-trash" id="kan_t_delete" data-id="' + index.id + '"></i></span></div>' +
   '<div class="board-column-content" data-id="' + index.id + '"></div>' +
-  '<div class="board-column-footer addJob" data-fid="'+index.id+'"> Add a Job </div>'+
+  // '<div class="board-column-footer"></div>'+
+  // '<div class="board-column-footer addJob" data-fid="'+index.id+'"> Add a Job </div>'+
   '</div>';
   itemElem.innerHTML = itemTemplate;
   return itemElem.firstChild;
 }
 
-function generateCard(){
+function generateCard(titles){
+  console.log(titles);
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
-  '<div class="board-item" data-id="" data-status="">' +
+  //static status needs to be changed
+  '<div class="board-item" data-id="" data-status="1">' +
   '<div class="board-item-content">' +
-  '<p class="board-title">Title</p>' +
+  '<p class="board-title">'+titles[0].value+'</p>' +
   '</div>' +
   '</div>';
 
@@ -192,24 +187,24 @@ $('#addCol').on('click',function(e){
   addColumn(newGridKey);
 })
 
-$('body').on('click', '.addJob', function(e){
-  let status = $(this).attr('data-fid');
-  let cardGen = generateCard();
-  columnGrids['g_'+status].add([cardGen]);
-
-  $.ajax({
-    url:base_url+"Lister/insertKanbanData",
-    data: {status:status},
-    method:'post',
-    success: function(res){
-      console.log('success');
-    },
-    error: function(res){
-      console.log('error');
-    }
-  })
-
-})
+// $('body').on('click', '.addJob', function(e){
+//   let status = $(this).attr('data-fid');
+//   let cardGen = generateCard('newtitle');
+//   columnGrids['g_'+status].add([cardGen]);
+//
+//   $.ajax({
+//     url:base_url+"Lister/insertKanbanData",
+//     data: {status:status},
+//     method:'post',
+//     success: function(res){
+//       console.log('success');
+//     },
+//     error: function(res){
+//       console.log('error');
+//     }
+//   })
+//
+// })
 
 function addColumn(gridKeysVal){
   console.log(gridKeysVal);
@@ -228,18 +223,135 @@ $('#insertJobData').on('submit',function(e){
     method: 'post',
     data: $('#insertJobData').serializeArray(),
     success: function(res){
+      let status = 1;
+      let cardGen = generateCard($('#insertJobData').serializeArray());
+      console.log($('#insertJobData').serializeArray());
+      columnGrids['g_'+status].add([cardGen]);
       jobCaller();
       setTimeout(function(e){
         $('#cancel_job').click();
-        console.log('job saved');
+        Swal.fire({
+          icon: 'success',
+          title: 'Job saved',
+        });
         $('#save_job').removeAttr('disabled');
       },2000);
 
     },
     error: function(res){
-      console.log('error saving job');
+      Swal.fire({
+        icon: 'error',
+        title: 'Job not saved',
+        text: 'Server error'
+      });
     }
   })
 })
+
+$('body').on('click','.contner',function(e){
+  let itemId = $(this)[0].dataset.id;
+
+  $.ajax({
+    url: base_url+"Lister/getKanbanDataId",
+    dataType: 'json',
+    method: 'post',
+    data: {itemId: itemId},
+    success: function(res){
+      for (var response in res) {
+        if(response == 'title'){
+          $("#viewJobModal .modal-title .modallist_"+response).html(res[response]);
+        }
+        if(res[response] != ''){
+          // if(response == 'job_priority'){
+          // if(res[response] == 'Low'){
+          //   $("#viewJobModal .modal-body .modallist_"+response).html("<span class='badge badge-info'>"+res[response]+"</span>");
+          // }else if(res[response] == 'Medium') {
+          //   $("#viewJobModal .modal-body .modallist_"+response).html("<span class='badge badge-warning'>"+res[response]+"</span>");
+          // }else if(res[response] == 'High'){
+          //   $("#viewJobModal .modal-body .modallist_"+response).html("<span class='badge badge-danger'>"+res[response]+"</span>");
+          // }else{
+          //   $("#viewJobModal .modal-body .modallist_"+response).html("Not set");
+          // }
+          // }else{
+          // }
+          $("#viewJobModal .modal-body .modallist_"+response).val(res[response]);
+        }else{
+          $("#viewJobModal .modal-body .modallist_"+response).val("N/A");
+        }
+      }
+    },
+    error: function(xhr){
+      console.log('error');
+    }
+  })
+})
+
+$('#edit_job').on('click',function(e){
+  e.preventDefault();
+  let itemId = $("#modallist_id").val();
+
+  $.ajax({
+    url: base_url+'Lister/updateModalKanData',
+    dataType: 'json',
+    data: $('#editjoblist').serializeArray(),
+    method: 'post',
+    success: function(res){
+      jobCaller();
+      setTimeout(function(e){
+        $('#canceledit_job').click();
+        Swal.fire({
+          icon: 'success',
+          title: 'Job edited',
+        });
+      },2000);
+    },
+    error: function(xhr){
+      Swal.fire({
+        icon: 'error',
+        title: 'Job editing failed'
+      })
+    }
+  })
+})
+
+$('body').on('click','#kan_t_delete',function(e){
+  e.preventDefault();
+
+  let kanTitleId = $(this)[0].dataset.id;
+  Swal.fire({
+  title: 'Are you sure?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Confirm'
+}).then((result) => {
+  if (result.value) {
+    $.ajax({
+      url: base_url+'Department/deleteKanTitleById',
+      data: {kanTitleId: kanTitleId},
+      method: 'post',
+      success: function(res){
+        $(this)[0].offsetParent.offsetParent.setAttribute('style','display:none');
+        jobCaller();
+        setTimeout(function(e){
+          Swal.fire({
+            icon: 'success',
+            title: res
+          })
+        },500);
+      },
+      error: function(xhr){
+        Swal.fire({
+          icon: 'error',
+          title: 'not deleted'
+        })
+      }
+    })
+  }
+});
+
+});
+
 
 });

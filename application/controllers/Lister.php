@@ -23,7 +23,7 @@ class Lister extends CI_Controller {
 			'job_description'=>$this->input->post('modal_job_description'),
 			'job_priority'=>$this->input->post('job_priority'),
 			'job_stage'=>$this->input->post('job_stage'),
-			'status'=>0
+			'status'=>1
 		);
 		$this->kmodel->insertKanbanData($data);
 	}
@@ -35,6 +35,11 @@ class Lister extends CI_Controller {
 		echo json_encode(array('kandata'=>$getKan,'kantitle'=>$getKanTitle));
 	}
 
+	public function getKanbanDataId(){
+		$getKanById = $this->kmodel->getKanbanDataId($this->input->post('itemId'));
+		echo json_encode($getKanById);
+	}
+
 	public function updateKanbanData(){
 		$id = $this->input->post('id');
 		$data = array(
@@ -43,4 +48,21 @@ class Lister extends CI_Controller {
 		$this->kmodel->updateKanbanData($id,$data);
 	}
 
+	public function updateModalKanData(){
+		$id = $this->input->post('modallist_id');
+		$data = array(
+			'data'=>$this->input->post('modallist_data'),
+			'job_description'=>$this->input->post('modallist_job_description'),
+			'job_priority'=>$this->input->post('modallist_job_priority'),
+			'job_stage'=>$this->input->post('modallist_job_stage'),
+		);
+		$returnData = $this->kmodel->updateKanbanData($id,$data);
+		echo json_encode($returnData);
+	}
+
+	public function deleteKanbanById(){
+		$id = $this->input->post('kan_id');
+		$this->kmodel->deleteKanbanById($id);
+		echo 'Job Deleted';
+	}
 }

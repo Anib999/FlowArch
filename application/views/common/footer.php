@@ -125,47 +125,47 @@
         <h5 class="modal-title" id="exampleModalLongTitle">Add Job</h5>
       </div>
       <form method="post" id="insertJobData">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="modal_job_title" class="">Job Title</label>
-                </div>
-                <div class="col-md-9">
-                  <input name="modal_job_title" id="modal_job_title" placeholder="Job Title" type="text" class="form-control" required>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="modal_job_description" class="">Job Description</label>
-                </div>
-                <div class="col-md-9">
-                  <textarea name="modal_job_description" id="modal_job_description" class="form-control"></textarea>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_title" class="">Job Title</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input name="modal_job_title" id="modal_job_title" placeholder="Job Title" type="text" class="form-control" required>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="position-relative form-group">
-              <label for="job_priority" class="">Priority</label>
-              <select class="form-control" name="job_priority" id="job_priority">
-                <option value=" ">None</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_description" class="">Job Description</label>
+                  </div>
+                  <div class="col-md-9">
+                    <textarea name="modal_job_description" id="modal_job_description" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="position-relative form-group">
-              <label for="job_stage" class="">Job Stage</label>
-              <!-- <select class="form-control" name="job_stage">
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_priority" class="">Priority</label>
+                <select class="form-control" name="job_priority" id="job_priority">
+                  <option value=" ">None</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Job Stage</label>
+                <!-- <select class="form-control" name="job_stage">
                 <option value="0">To Do</option>
                 <option value="1">Working</option>
                 <option value="2">Done</option>
@@ -179,8 +179,75 @@
         <button type="submit" id="save_job" name="save_job" class="btn btn-primary">Save Job</button>
         <button type="button" name="cancel_job" id="cancel_job" data-dismiss="modal" class="btn btn-default">Cancel</button>
       </div>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
+</div>
 <!-- Add Job Modal -->
+
+<!-- View/edit Job Modal -->
+<div class="modal fade" id="viewJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">View Job Details <small>(<span class="modallist_title"></span>)</small></h5>
+      </div>
+      <form class="" id="editjoblist" method="post">
+        <div class="modal-body">
+
+          <input type="hidden" name="modallist_id" value="" id="modallist_id" class="modallist_id" readonly style="display:none;">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_title" class="">Job Title</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="text" name="modallist_data" value="" class="modallist_data form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modallist_job_description" class="">Job Description</label>
+                  </div>
+                  <div class="col-md-9">
+                    <textarea name="modallist_job_description" class="modallist_job_description form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="modallist_job_priority" class="">Priority</label>
+                <select class="modallist_job_priority form-control" name="modallist_job_priority" id="modallist_job_priority">
+                  <option value=" ">None</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Job Stage</label>
+                <input type="text" name="modallist_job_stage" value="" class="modallist_job_stage form-control">
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" name="edit_job" id="edit_job" class="btn btn-success" data-toggle="modal" data-target="#editJobModal">Edit Job</button>
+      <button type="button" name="cancel" id="canceledit_job" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<!-- View Job Modal -->
