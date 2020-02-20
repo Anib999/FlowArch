@@ -23,7 +23,8 @@ class Lister extends CI_Controller {
 			'job_description'=>$this->input->post('modal_job_description'),
 			'job_priority'=>$this->input->post('job_priority'),
 			'job_stage'=>$this->input->post('job_stage'),
-			'status'=>1
+			'status'=>1,
+			'dep_type'=>$this->session->userdata('dep_type')
 		);
 		$this->kmodel->insertKanbanData($data);
 	}
@@ -35,6 +36,29 @@ class Lister extends CI_Controller {
 		echo json_encode(array('kandata'=>$getKan,'kantitle'=>$getKanTitle));
 	}
 
+	public function insertKanbanDataForm(){
+		$data = array(
+			'data'=>$this->input->post('modal_job_title'),
+			'job_description'=>$this->input->post('modal_job_description'),
+			'job_priority'=>$this->input->post('job_priority'),
+			'job_stage'=>$this->input->post('job_stage'),
+			'status'=>1,
+			'dep_type'=>$this->input->post('dep_type')
+		);
+		$this->kmodel->insertKanbanData($data);
+		redirect('Department/viewDepWiseJob');
+	}
+
+	public function getKanbanDataDep(){
+		$getKanDep = $this->kmodel->getKanbanDataDep($this->input->get('dep_type'));
+		$getKanTitle = $this->kmodel->getAllKanTitle();
+		if($this->input->get('dep_type') == $this->session->userdata('dep_type')){
+			echo json_encode(array('kandata'=>$getKanDep,'kantitle'=>$getKanTitle));
+		}else{
+			echo json_encode('404 Not Found');
+		}
+	}
+
 	public function getKanbanDataId(){
 		$getKanById = $this->kmodel->getKanbanDataId($this->input->post('itemId'));
 		echo json_encode($getKanById);
@@ -44,6 +68,7 @@ class Lister extends CI_Controller {
 		$id = $this->input->post('id');
 		$data = array(
 			'status'=> $this->input->post('status'),
+			'pre_status' => $this->input->post('pre_status')
 		);
 		$this->kmodel->updateKanbanData($id,$data);
 	}
@@ -65,4 +90,14 @@ class Lister extends CI_Controller {
 		$this->kmodel->deleteKanbanById($id);
 		echo 'Job Deleted';
 	}
+
+	public function dragToFlow(){
+		$data = 'DragFlow';
+		$this->load->view('common/header',[
+			'title' => $data,
+		]);
+    $this->load->view('dynamicContent/lister/dragToFlow');
+    $this->load->view('common/footer');
+	}
+
 }

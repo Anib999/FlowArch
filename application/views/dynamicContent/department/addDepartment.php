@@ -98,6 +98,7 @@
                 <option value="1">IT Department</option>
                 <option value="2">HR Department</option>
                 <option value="3">Legal Department</option>
+                <option value="47">Admin</option>
               </select>
               <?= form_error('dep-type'); ?>
             </div>

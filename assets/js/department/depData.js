@@ -10,8 +10,12 @@ $(document).ready(function() {
           return 'IT Department'
         }else if (data == 2) {
           return 'HR Department'
-        }else{
+        }else if (data == 3){
           return 'Legal Department'
+        }else if(data == 47){
+          return 'Super Admin'
+        }else{
+          return data
         }
       }},
       {'data':'', render:function(data, meta, row){

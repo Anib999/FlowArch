@@ -33,6 +33,24 @@ class KanModel extends CI_Model {
     return $result;
   }
 
+  public function getKanbanDataDep($dep_type){
+    $query = $this->db->query('SELECT
+      kd.id,
+      kd.data,
+      kt.id AS status,
+      kd.pre_status,
+      kd.job_priority,
+      kt.title
+      FROM `kanbantab` AS kd
+        JOIN `kantitle` AS kt
+          ON kd.status = kt.id
+      WHERE kd.dep_type = '.$dep_type.'
+      ORDER BY kd.status ASC
+    ');
+    $result = $query->result();
+    return $result;
+  }
+
   public function getAllKanTitle(){
     $query = $this->db->get('kantitle');
     $result = $query->result();

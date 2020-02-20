@@ -128,4 +128,26 @@ class Department extends CI_Controller {
     echo "title deleted";
   }
 
+  public function viewDepWiseJob(){
+    $data = 'View Dep Job';
+    $classer = 'mm-active';
+    $this->load->view('common/header',[
+      'title' => $data,
+      //'activedepwise' =>$classer
+    ]);
+    $this->load->view('dynamicContent/department/viewDepWiseJob');
+    $this->load->view('common/footer');
+  }
+
+  public function postJobDep(){
+    $data = 'Post Job Department';
+    $classer = 'mm-active';
+    $this->load->view('common/header',[
+      'title' => $data,
+      //'activedepwise' =>$classer
+    ]);
+    $this->load->view('dynamicContent/department/postJobDep');
+    $this->load->view('common/footer');
+  }
+
 }

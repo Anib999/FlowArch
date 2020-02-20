@@ -29,7 +29,8 @@
 
 </div>
 </div>
-<script src="<?= base_url('assets/js/main.js') ?>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="<?= base_url('assets/js/newmain.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/js/autoclosesidebar.js') ?>" charset="utf-8"></script> -->
 </body>
 </html>
@@ -165,11 +166,6 @@
             <div class="col-md-6">
               <div class="position-relative form-group">
                 <label for="job_stage" class="">Job Stage</label>
-                <!-- <select class="form-control" name="job_stage">
-                <option value="0">To Do</option>
-                <option value="1">Working</option>
-                <option value="2">Done</option>
-              </select> -->
               <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
             </div>
           </div>
@@ -250,4 +246,4 @@
 </div>
 </div>
 </div>
-<!-- View Job Modal -->
+<!-- View/edit Job Modal -->

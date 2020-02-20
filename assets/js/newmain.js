@@ -16884,9 +16884,10 @@
    r()(this).toggleClass("is-active"), r()(".app-container").toggleClass("sidebar-mobile-open")
   }), r()(".mobile-toggle-header-nav").click(function() {
    r()(this).toggleClass("active"), r()(".app-header__content").toggleClass("header-mobile-open")
-  }), r()(window).on("resize", function() {
-   r()(this).width() < 1250 ? r()(".app-container").addClass("closed-sidebar-mobile closed-sidebar") : r()(".app-container").removeClass("closed-sidebar-mobile closed-sidebar")
   })
+  // , r()(window).on("resize", function() {
+  //  r()(this).width() < 1250 ? r()(".app-container").addClass("closed-sidebar-mobile closed-sidebar") : r()(".app-container").removeClass("closed-sidebar-mobile closed-sidebar")
+  // })
  })
 }, function(e, t, n) {
  /*!

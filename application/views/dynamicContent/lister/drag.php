@@ -8,7 +8,16 @@
           <i class="fa fa-send icon-gradient bg-warm-flame">
           </i>
         </div>
-        <div>Job Status
+        <div>Job Status of
+          <?php
+          if($this->session->userdata('dep_type') == 1){
+            echo 'IT Department';
+          }elseif ($this->session->userdata('dep_type') == 2) {
+            echo 'HR Department';
+          }elseif($this->session->userdata('dep_type') == 3){
+            echo 'Legal Department';
+          }
+          ?>
           <div class="page-title-subheading">View and Update status.
           </div>
         </div>
@@ -16,28 +25,30 @@
     </div>
   </div>
   <!--Title-->
-  
+
   <div class="row">
     <div class="col-md-12">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJobModal" name="button">Add a job</button>
+      <button type="button" class="btn btn-primary" id="add_job" name="button">Add a job</button>
+      <a href="<?= base_url('Lister/dragToFlow?dep_type='.$_GET['dep_type'].'') ?>"><button type="button" name="button" class="pull-right btn btn-info">View in FlowChart</button></a>
     </div>
   </div>
   <br />
   <!-- <button type="button" id="addCol" name="button">Add</button> -->
   <div class="row">
     <div class="col-md-12">
-      <div class="main-card mb-3 card">
+      <!-- <div class="main-card mb-3 card">
         <div class="card-header">Job Stages</div>
-        <div class="card-body">
+        <div class="card-body"> -->
+          <img id="loader" src="<?= base_url('assets/images/newla.gif') ?>" alt="" style="position: absolute; z-index:3;left:39%">
 
-          <div class="kanban-board">
+          <div class="kanban-board" id="kan-b">
             <div class="board">
 
             </div>
           </div>
-
+<!--
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 

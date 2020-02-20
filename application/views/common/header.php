@@ -11,10 +11,10 @@
   <meta name="description" content="">
   <meta name="msapplication-tap-highlight" content="no">
   <link rel="icon" href="<?= base_url('assets/images/smalllogo2.png') ?>">
-  <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="<?= base_url('assets/js/jquery/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/sweetalert/sweetalert2@9.js') ?>"></script>
+  <link href="<?= base_url('assets/css/newmain.css') ?>" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style media="screen">
   .closed-sidebar:not(.closed-sidebar-mobile) .smalllogo {
     display: none;
@@ -29,7 +29,7 @@
 </head>
 <body>
   <input type="text" id="base_url" name="" value="<?= base_url() ?>" style="display:none;">
-  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar"> <!-- closed-sidebar fixed-footer-->
+  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar fixed-footer"> <!-- closed-sidebar fixed-footer-->
 
     <div class="app-header header-shadow">
       <div class="app-header__logo">
@@ -212,7 +212,19 @@
                 <li>
                   <a href="<?= base_url('Department/addDepwise') ?>">
                     <i class="metismenu-icon"></i>
-                    Post Departmentwise Job
+                    Add Status
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Department/postJobDep') ?>">
+                    <i class="metismenu-icon"></i>
+                    Post Department Job
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url('Department/viewDepWiseJob') ?>">
+                    <i class="metismenu-icon"></i>
+                    View Departmentwise Job
                   </a>
                 </li>
                 <li>
