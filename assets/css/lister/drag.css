@@ -116,3 +116,15 @@
   transform: scale(1.5);
   color: rgb(0, 0, 0);
 }
+.board-column-content::-webkit-scrollbar {
+  width: 1em;
+}
+.board-column-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(176, 172, 171, 0.45);
+  border-radius: 25px;
+}
+.board-column-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 25px;
+}
