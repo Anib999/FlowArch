@@ -8,16 +8,7 @@
           <i class="fa fa-send icon-gradient bg-warm-flame">
           </i>
         </div>
-        <div>Job Status of
-          <?php
-          if($this->session->userdata('dep_type') == 1){
-            echo 'IT Department';
-          }elseif ($this->session->userdata('dep_type') == 2) {
-            echo 'HR Department';
-          }elseif($this->session->userdata('dep_type') == 3){
-            echo 'Legal Department';
-          }
-          ?>
+        <div>Job Status of <?php echo $this->session->userdata('dep_name'); ?>
           <div class="page-title-subheading">View and Update status.
           </div>
         </div>

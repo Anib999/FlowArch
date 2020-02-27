@@ -23,7 +23,7 @@ class Lister extends CI_Controller {
 			'job_description'=>$this->input->post('modal_job_description'),
 			'job_priority'=>$this->input->post('job_priority'),
 			'job_stage'=>$this->input->post('job_stage'),
-			'status'=>1,
+			'status'=>$this->input->post('this_stat'),
 			'dep_type'=>$this->session->userdata('dep_type')
 		);
 		$this->kmodel->insertKanbanData($data);
@@ -51,9 +51,10 @@ class Lister extends CI_Controller {
 
 	public function getKanbanDataDep(){
 		$getKanDep = $this->kmodel->getKanbanDataDep($this->input->get('dep_type'));
-		$getKanTitle = $this->kmodel->getAllKanTitle();
+		$getKanTitle = $this->kmodel->getKanTitleDep($this->input->get('dep_type'));
+		$getDepIns = $this->kmodel->getKanTitleDepInsert($this->input->get('dep_type'));
 		if($this->input->get('dep_type') == $this->session->userdata('dep_type')){
-			echo json_encode(array('kandata'=>$getKanDep,'kantitle'=>$getKanTitle));
+			echo json_encode(array('kandata'=>$getKanDep,'kantitle'=>$getKanTitle,'kanstatus'=>$getDepIns));
 		}else{
 			echo json_encode('404 Not Found');
 		}

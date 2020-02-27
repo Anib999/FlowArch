@@ -57,6 +57,18 @@ class KanModel extends CI_Model {
     return $result;
   }
 
+  public function getKanTitleDepInsert($dep_type){
+    $this->db->where('dep_type',$dep_type);
+    $query = $this->db->get('kantitle',0,1)->row();
+    return $query;
+  }
+
+  public function getKanTitleDep($dep_type){
+    $query = $this->db->query('SELECT * FROM `kantitle` WHERE dep_type = '.$dep_type.'');
+    $result = $query->result();
+    return $result;
+  }
+
   public function getKanbanDataId($id){
     $query = $this->db->query('SELECT
       kd.id,
@@ -79,7 +91,7 @@ class KanModel extends CI_Model {
   }
 
   public function deleteKanbanById($id){
-    $this->db->where('id',$id);
+    $this->db->where('status',$id);
     $this->db->delete('kanbantab');
   }
 

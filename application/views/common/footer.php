@@ -166,18 +166,19 @@
             <div class="col-md-6">
               <div class="position-relative form-group">
                 <label for="job_stage" class="">Job Stage</label>
-              <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
+                <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
+              </div>
             </div>
+            <input type="hidden" name="this_stat" id='this_stat' value="" style="display:none;">
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" id="save_job" name="save_job" class="btn btn-primary">Save Job</button>
-        <button type="button" name="cancel_job" id="cancel_job" data-dismiss="modal" class="btn btn-default">Cancel</button>
-      </div>
-    </form>
+        <div class="modal-footer">
+          <button type="submit" id="save_job" name="save_job" class="btn btn-primary">Save Job</button>
+          <button type="button" name="cancel_job" id="cancel_job" data-dismiss="modal" class="btn btn-default">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </div>
 <!-- Add Job Modal -->
 
@@ -233,17 +234,53 @@
               <div class="position-relative form-group">
                 <label for="job_stage" class="">Job Stage</label>
                 <input type="text" name="modallist_job_stage" value="" class="modallist_job_stage form-control">
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+        <div class="modal-footer">
+          <button type="button" name="edit_job" id="edit_job" class="btn btn-success" data-toggle="modal" data-target="#editJobModal">Edit Job</button>
+          <button type="button" name="cancel" id="canceledit_job" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
-    <div class="modal-footer">
-      <button type="button" name="edit_job" id="edit_job" class="btn btn-success" data-toggle="modal" data-target="#editJobModal">Edit Job</button>
-      <button type="button" name="cancel" id="canceledit_job" class="btn btn-default" data-dismiss="modal">Cancel</button>
-    </div>
-  </form>
-</div>
-</div>
+  </div>
 </div>
 <!-- View/edit Job Modal -->
+
+<!-- edit department Modal -->
+<div class="modal fade" id="editDepModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Department Details</h5>
+      </div>
+      <form id="editDepForm" class="" method="post">
+        <div class="modal-body">
+          <input type="hidden" class="dep_id" name="dep_id" value="" readonly style="display:none;">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="postion-relative form-group">
+                <label for="">Department Name</label>
+                <input type="text" class="dep_dep_type form-control" name="dep_name" value="" placeholder="Department Name">
+              </div>
+              <?= form_error('dep_name'); ?>
+            </div>
+            <div class="col-md-12">
+              <div class="position-relative form-group">
+                <label for="">Keywords</label>
+                <input type="text" class="dep_keywords form-control" name="dep_keywords" value="" placeholder="Seperate keywords using comma (eg. example,example)">
+              </div>
+            </div>
+            <?= form_error('dep_keyword'); ?>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="editDepBtn" name="button">Edit Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- edit department Modal -->

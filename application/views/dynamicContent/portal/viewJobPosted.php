@@ -72,7 +72,7 @@
     <div class="col-md-12">
       <div class="main-card mb-3 card">
         <div class="card-header">View Posted Jobs</div>
-        <div class="card-body">
+        <div class="card-body overflow-auto">
           <table id="viewOwnJob" style="width:100%" class="align-middle mb-0 table table-borderless table-striped table-hover">
             <thead>
               <tr>

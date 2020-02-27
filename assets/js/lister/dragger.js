@@ -3,7 +3,7 @@ let boardGrid;
 let columnGrids = [];
 let url = new URL(window.location.href);
 let urlId = url.searchParams.get('dep_type');
-
+depInsData = '';
 document.addEventListener('DOMContentLoaded', function () {
   jobCaller();
 
@@ -43,13 +43,17 @@ document.addEventListener('DOMContentLoaded', function () {
         let newCount = '';
         let kanData = res.kandata;
         let kanTitle = res.kantitle;
+        let kanDepIns = res.kanstatus;
+        depInsData = kanDepIns.id;
         $('#loader').hide();
         boardMake(kanTitle);
         //console.log(kanData);
         for (let resDa in kanData) {
           if(kanData[resDa].status){
             let resItem = generateBoardItem(kanData[resDa]);
-            columnGrids['g_'+kanData[resDa].status].add([resItem]);
+            if(columnGrids['g_'+kanData[resDa].status] != undefined){
+              columnGrids['g_'+kanData[resDa].status].add([resItem]);
+            }
           }
         }
       },
@@ -251,6 +255,7 @@ function addColumn(gridKeysVal){
 }
 $( "#add_job").on('click',function(e){
   $( "#addJobModal").modal('show');
+  $('#this_stat').val(depInsData);
 })
 $('#insertJobData').on('submit',function(e){
   e.preventDefault();
@@ -262,9 +267,9 @@ $('#insertJobData').on('submit',function(e){
     data: $('#insertJobData').serializeArray(),
     success: function(res){
       $('#addJobModal').modal('hide');
-      let status = 1;
-      let cardGen = generateCard($('#insertJobData').serializeArray());
-      columnGrids['g_'+status].add([cardGen]);
+      // let status = 1;
+      // let cardGen = generateCard($('#insertJobData').serializeArray());
+      // columnGrids['g_'+status].add([cardGen]);
       jobCaller();
       setTimeout(function(e){
         Swal.fire({
@@ -370,7 +375,7 @@ $('body').on('click','#kan_t_delete',function(e){
         data: {kanTitleId: kanTitleId},
         method: 'post',
         success: function(res){
-          $(this)[0].offsetParent.offsetParent.setAttribute('style','display:none');
+          // console.log($(this)[0].offsetParent.offsetParent.setAttribute('style','display:none'));
           jobCaller();
           setTimeout(function(e){
             Swal.fire({

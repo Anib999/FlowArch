@@ -29,15 +29,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">
-                  <?php
-                  if($this->session->userdata('dep_type') == 1){
-                    echo 'IT Department';
-                  }elseif ($this->session->userdata('dep_type') == 2) {
-                    echo 'HR Department';
-                  }elseif($this->session->userdata('dep_type') == 3){
-                    echo 'Legal Department';
-                  }
-                  ?>
+                  <?php echo $this->session->userdata('dep_name'); ?>
                 </h5>
                 <a href="<?= base_url('Lister/drag?dep_type=').$this->session->userdata('dep_type') ?>" class="btn btn-success">View Jobs</a>
               </div>

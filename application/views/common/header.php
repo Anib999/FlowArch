@@ -120,15 +120,7 @@
                     <?= $this->session->userdata('username') ?>
                   </div>
                   <div class="widget-subheading">
-                    <?php
-                    if($this->session->userdata('dep_type') == 1){
-                      echo 'IT Department';
-                    }elseif ($this->session->userdata('dep_type') == 2) {
-                      echo 'HR Department';
-                    }elseif($this->session->userdata('dep_type') == 3){
-                      echo 'Legal Department';
-                    }
-                    ?>
+                    <?php echo $this->session->userdata('dep_name'); ?>
                   </div>
                 </div>
                 <div class="widget-content-right header-user-info ml-3">
@@ -194,8 +186,6 @@
                 echo $activejob;
               } elseif (isset($activeview)){
                 echo $activeview;
-              } elseif (isset($activeview)){
-                echo $activeview;
               } ?>">
               <a href="#">
                 <i class="metismenu-icon pe-7s-notebook"></i>
@@ -203,6 +193,12 @@
                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
               </a>
               <ul>
+                <li>
+                  <a href="<?= base_url('Users/addUsers') ?>" class="">
+                    <i class="metismenu-icon"></i>
+                    Add Users
+                  </a>
+                </li>
                 <li>
                   <a href="<?= base_url('Department/addDepartment') ?>" class="<?php if(isset($activedep)){ echo $activedep; } ?>">
                     <i class="metismenu-icon"></i>
@@ -306,7 +302,7 @@
               </a>
               <ul>
                 <li>
-                  <a href="<?= base_url('Lister/drag') ?>">
+                  <a href="#">
                     <i class="metismenu-icon"></i>
                     View/Update Status
                   </a>
