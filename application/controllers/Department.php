@@ -39,6 +39,11 @@ class Department extends CI_Controller {
     $this->load->view('common/footer');
   }
 
+  public function getKanTitleDepWithId(){
+    $getDepId = $this->kanmodel->getKanTitleDepWithId($this->input->post('dep_type'));
+    echo json_encode($getDepId);
+  }
+
   public function insertKanTitle(){
     $this->load->library('form_validation');
 
@@ -171,6 +176,11 @@ class Department extends CI_Controller {
       }
     }
     echo json_encode($da);
+  }
+
+  public function getKanTitleDepInsert(){
+    $getDepIns = $this->kanmodel->getKanTitleDepInsert($this->input->get('dep_type'));
+    echo json_encode($getDepIns);
   }
 
   public function getDepartmentById(){
