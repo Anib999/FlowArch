@@ -25,6 +25,81 @@ class Department extends CI_Controller {
     $this->load->view('common/footer');
   }
 
+  public function addSubDepartment(){
+    $data = 'Add Sub-Department';
+    $classer = 'mm-active';
+    $depType = $this->departmodel->getAllDepartments();
+    $this->load->view('common/header',[
+      'title' => $data,
+      //'activedep' =>$classer
+    ]);
+    $this->load->view('dynamicContent/department/addSubDepartment',[
+      'depType' => $depType,
+      'countries' => json_decode($this->getCou())
+    ]);
+    $this->load->view('common/footer');
+  }
+
+  public function createSubDepartment(){
+    $rules = array(
+      array(
+        'field'=>'sub_dep_name',
+        'label'=>'Sub-Department',
+        'rules'=>'required|is_unique[subdeptab.sub_dep_name]',
+        'errors'=>array(
+          'is_unique'=>'%s already exists',
+          'required'=>'%s is required'
+        )
+      ),
+      array(
+        'field'=>'dep_type',
+        'label'=>'Department',
+        'rules'=>'required',
+        'errors'=>array(
+          'required'=>'%s is required'
+        )
+      ),
+      array(
+        'field'=>'country',
+        'label'=>'Country',
+        'rules'=>'required',
+        'errors'=>array(
+          'required'=>'%s is required'
+        )
+      ),
+      array(
+        'field'=>'city',
+        'label'=>'City',
+        'rules'=>'required',
+        'errors'=>array(
+          'required'=>'%s is required'
+        )
+      )
+    );
+    $this->form_validation->set_rules($rules);
+    $this->form_validation->set_error_delimiters("<div class='error'>","</div>");
+    $this->form_validation->set_message('required','Enter %s');
+    if($this->form_validation->run() === FALSE){
+      $this->session->set_flashdata('error','Sub Department not added');
+      $this->addSubDepartment();
+    }else{
+      $data = array(
+        'sub_dep_name'=>$this->input->post('sub_dep_name'),
+        'dep_type'=>$this->input->post('dep_type'),
+        'country'=>$this->input->post('country'),
+        'city'=>$this->input->post('city')
+      );
+        $this->departmodel->createSubDepartment($data);
+        $this->session->set_flashdata('success','Sub Department added');
+        redirect('Department/addSubDepartment');
+    }
+  }
+
+  public function getAllSubDepartments(){
+    $getSubDep = $this->departmodel->getAllSubDepartments();
+    echo json_encode($getSubDep);
+  }
+
   public function addDepwise(){
     $data = 'Add Dep Job';
     $classer = 'mm-active';
@@ -39,9 +114,12 @@ class Department extends CI_Controller {
     $this->load->view('common/footer');
   }
 
-  public function insertKanTitle(){
-    $this->load->library('form_validation');
+  public function getKanTitleDepWithId(){
+    $getDepId = $this->kanmodel->getKanTitleDepWithId($this->input->post('dep_type'));
+    echo json_encode($getDepId);
+  }
 
+  public function insertKanTitle(){
     $rules = array(
       array(
         'field'=>'add_status',
@@ -173,6 +251,11 @@ class Department extends CI_Controller {
     echo json_encode($da);
   }
 
+  public function getKanTitleDepInsert(){
+    $getDepIns = $this->kanmodel->getKanTitleDepInsert($this->input->get('dep_type'));
+    echo json_encode($getDepIns);
+  }
+
   public function getDepartmentById(){
     $getDepId = $this->departmodel->getDepartmentById($this->input->post('dep_id'));
     if($getDepId->keywords != ''){
@@ -211,6 +294,10 @@ class Department extends CI_Controller {
         }
       }
     }
+  }
+
+  private function getCou(){
+    return file_get_contents(FCPATH.'assets/countries.json');
   }
 
 }

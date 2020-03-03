@@ -9,7 +9,7 @@
           </i>
         </div>
         <div>Department
-          <div class="page-title-subheading">Add Department
+          <div class="page-title-subheading">Add Sub-Department
           </div>
         </div>
       </div>
@@ -67,29 +67,52 @@
     </div>
   </div>
   <!--Title-->
-
+  <?= $this->session->flashdata('success')!= null?'<div class="alert alert-success fade show">'.$this->session->flashdata('success').'</div>':'' ?>
+  <?= $this->session->flashdata('error')!= null?'<div class="alert alert-danger fade show">'.$this->session->flashdata('error').'</div>':'' ?>
   <div class="main-card mb-3 card">
-    <div class="card-body"><h5 class="card-title">Add Department</h5>
+    <div class="card-body"><h5 class="card-title">Add Sub-Department</h5>
 
-      <form class="" action="<?= base_url('Department/createDepartment') ?>" method="post">
+      <form class="" action="<?= base_url('Department/createSubDepartment') ?>" method="post">
         <div class="form-row">
           <div class="col-md-6">
-            <div class="postion-relative form-group">
-              <label for="">Department Name</label>
-              <input type="text" class="form-control" name="dep_name" value="" placeholder="Department Name">
-            </div>
-            <?= form_error('dep_name'); ?>
-          </div>
-          <div class="col-md-12">
             <div class="position-relative form-group">
-              <label for="">Areas of Service</label>
-              <input type="text" class="form-control" name="dep_keyword" value="" placeholder="Seperate areas of service using comma (eg. example,example)">
+              <label for="">Sub-Department</label>
+              <input type="text" name="sub_dep_name" class="form-control" value="" placeholder="Sub Department Name" required>
+              <?= form_error('sub_dep_name'); ?>
             </div>
           </div>
-          <?= form_error('dep_keyword'); ?>
+          <div class="col-md-6">
+            <div class="postion-relative form-group">
+              <label for="">Department</label>
+              <select class="form-control" name="dep_type">
+                <option value=" ">Select Department</option>
+                <?php
+                foreach ($depType as $k) {
+                  if($k->id != 47)
+                    printf("<option value='%d'>%s</option>",$k->id,$k->dep_type);
+                }
+                ?>
+              </select>
+              <?= form_error('dep_type'); ?>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="">Country</label>
+              <input type="text" name="country" class="form-control" value="" placeholder="Country" required>
+              <?= form_error('country'); ?>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="position-relative form-group">
+              <label for="">City</label>
+              <input type="text" name="city" class="form-control" value="" placeholder="City" required>
+              <?= form_error('city'); ?>
+            </div>
+          </div>
         </div>
 
-        <input type="submit" name="" class="mt-2 btn btn-primary pull-right" value="Add Department">
+        <input type="submit" name="" class="mt-2 btn btn-primary pull-right" value="Add Sub-Department">
       </form>
 
     </div>
@@ -99,12 +122,13 @@
     <div class="col-lg-12">
       <div class="main-card mb-3 card">
         <div class="card-body overflow-auto"><h5 class="card-title">Department Table</h5>
-          <table id="depTable" class="mb-0 table table-hover">
+          <table id="subDepTable" class="mb-0 table table-hover">
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Department Type</th>
-                <th>Areas of service</th>
+                <th>Sub Department Name</th>
+                <th>Parent Department</th>
+                <th>Address</th>
                 <th>Options</th>
               </tr>
             </thead>
@@ -117,40 +141,4 @@
 
 </div>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" charset="utf-8"></script>
-<script src="<?= base_url('assets/js/department/depData.js') ?>" charset="utf-8"></script>
-
-<!-- <form class="" method="post" action="<?= base_url('Department/insertDep') ?>">
-<div class="form-row">
-<div class="col-md-6">
-<div class="position-relative form-group">
-<label for="username" class="">Username</label>
-<input name="username" id="username" placeholder="Username" type="text" class="form-control" required>
-<?= form_error('username'); ?>
-</div>
-</div>
-<div class="col-md-6">
-<div class="position-relative form-group">
-<label for="password" class="">Password</label>
-<input name="password" id="password" placeholder="Password" type="password" class="form-control" required>
-<?= form_error('password'); ?>
-</div>
-</div>
-</div>
-
-<div class="form-row">
-<div class="col-md-6">
-<div class="position-relative form-group">
-<label for="dep-type" class="">Department Type</label>
-<select class="form-control" name="dep-type" required>
-<option></option>
-<option value="1">IT Department</option>
-<option value="2">HR Department</option>
-<option value="3">Legal Department</option>
-<option value="47">Admin</option>
-</select>
-<?= form_error('dep-type'); ?>
-</div>
-</div>
-</div>
-<input class="mt-2 btn btn-primary pull-right" type="submit" name="" value="Sign Up">
-</form> -->
+<script src="<?= base_url('assets/js/department/subDepData.js') ?>" charset="utf-8"></script>

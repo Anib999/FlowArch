@@ -42,7 +42,7 @@ class Lister extends CI_Controller {
 			'job_description'=>$this->input->post('modal_job_description'),
 			'job_priority'=>$this->input->post('job_priority'),
 			'job_stage'=>$this->input->post('job_stage'),
-			'status'=>1,
+			'status'=>$this->input->post('status'),
 			'dep_type'=>$this->input->post('dep_type')
 		);
 		$this->kmodel->insertKanbanData($data);

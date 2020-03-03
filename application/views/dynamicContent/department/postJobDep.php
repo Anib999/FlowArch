@@ -61,31 +61,32 @@
               <div class="col-md-6">
                 <div class="position-relative form-group">
                   <label for="job_stage" class="">Job Stage</label>
-                <input type="text" name="job_stage" class="form-control" value="">
+                  <input type="text" name="job_stage" class="form-control" value="">
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="position-relative form-group">
-                <label for="service_type" class="">Service Type</label>
-              <input type="text" name="service_type" id="service_type" class="form-control" value="">
-            </div>
-          </div>
-            <div class="col-md-6">
-              <div class="position-relative form-group">
-                <label for="dep_type">Department</label>
-                <select class="form-control" name="dep_type">
-                  <option value=" ">Select Department</option>
-                  <?php
-                  foreach ($depType as $k) {
-                    printf("<option value='%d'>%s</option>",$k->id,$k->dep_type);
-                  }
-                   ?>
-                </select>
+              <div class="col-md-6">
+                <div class="position-relative form-group">
+                  <label for="service_type" class="">Service Type</label>
+                  <input type="text" name="service_type" id="service_type" class="form-control" value="">
+                </div>
               </div>
+              <div class="col-md-6">
+                <div class="position-relative form-group">
+                  <label for="dep_type">Department</label>
+                  <select class="form-control" name="dep_type">
+                    <option value=" ">Select Department</option>
+                    <?php
+                    foreach ($depType as $k) {
+                      printf("<option value='%d'>%s</option>",$k->id,$k->dep_type);
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <input type="hidden" name="status" value="" style="display:none;">
             </div>
-          </div>
-          <input type="submit" name="" class="btn btn-primary pull-right" value="Post Job">
-        </form>
+            <input type="submit" name="" class="btn btn-primary pull-right" value="Post Job">
+          </form>
 
         </div>
       </div>

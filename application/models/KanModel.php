@@ -63,6 +63,12 @@ class KanModel extends CI_Model {
     return $query;
   }
 
+  public function getKanTitleDepWithId($dep_type){
+    $this->db->where('dep_type',$dep_type);
+    $query = $this->db->get('kantitle');
+    return $query->result();
+  }
+
   public function getKanTitleDep($dep_type){
     $query = $this->db->query('SELECT * FROM `kantitle` WHERE dep_type = '.$dep_type.'');
     $result = $query->result();

@@ -206,6 +206,12 @@
                   </a>
                 </li>
                 <li>
+                  <a href="<?= base_url('Department/addSubDepartment') ?>" class="">
+                    <i class="metismenu-icon"></i>
+                    Add Sub-Department
+                  </a>
+                </li>
+                <li>
                   <a href="<?= base_url('Department/addDepwise') ?>">
                     <i class="metismenu-icon"></i>
                     Add Status
