@@ -49,13 +49,14 @@ $(document).ready(function(){
         layoutDuration: 400,
         layoutEasing: 'ease',
         dragEnabled: false,
+        dragSort: false,
       })
       .on('layoutStart', function () {
         // boardGrid.refreshItems().layout();
       })
-      .on('dragReleaseEnd', function(){
-        console.log(this);
-        columnGrids['g_0'].add([resItem]);
+      .on('dragReleaseStart', function(item){
+        let currentItem = item.getElement();
+        columnGrids['g_0'].hide([currentItem]);
       })
       columnGrids['g_'+container.dataset.id] = muuri;
     });

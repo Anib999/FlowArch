@@ -63,10 +63,14 @@ document.addEventListener('DOMContentLoaded', function () {
         gridCol = $('.board-column');
         setTimeout(function(){
           var translateXPos = 0;
+          var maxBoardHeight = 0;
           gridCol.each(function(i){
             translateXPos += 178;
             this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
+            if(maxBoardHeight < this.clientHeight)
+            maxBoardHeight = this.clientHeight;
           })
+          $('.board.muuri').css('height',(maxBoardHeight+23.5)+'px')
         },100)
 
       },
