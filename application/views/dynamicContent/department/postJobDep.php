@@ -73,7 +73,7 @@
               <div class="col-md-6">
                 <div class="position-relative form-group">
                   <label for="dep_type">Department</label>
-                  <select class="form-control" name="dep_type">
+                  <select class="form-control" name="dep_type" required>
                     <option value=" ">Select Department</option>
                     <?php
                     foreach ($depType as $k) {

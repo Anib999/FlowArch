@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Department extends CI_Controller {
-  private $jobStatusLimit = 2;
+  private $jobStatusLimit = 6;
   function __construct(){
     parent::__construct();
     $this->load->model('AddDepartmentModel','depmodel');
@@ -89,9 +89,9 @@ class Department extends CI_Controller {
         'country'=>$this->input->post('country'),
         'city'=>$this->input->post('city')
       );
-        $this->departmodel->createSubDepartment($data);
-        $this->session->set_flashdata('success','Sub Department added');
-        redirect('Department/addSubDepartment');
+      $this->departmodel->createSubDepartment($data);
+      $this->session->set_flashdata('success','Sub Department added');
+      redirect('Department/addSubDepartment');
     }
   }
 
@@ -169,7 +169,7 @@ class Department extends CI_Controller {
     //deletes both title and its contents
     $id = $this->input->post('kanTitleId');
     $this->depmodel->deleteKanTitleById($id);
-    $this->kanmodel->deleteKanbanById($id);
+    //$this->kanmodel->deleteKanbanById($id);
     echo "title deleted";
   }
 
@@ -183,6 +183,39 @@ class Department extends CI_Controller {
     $this->load->view('dynamicContent/department/viewDepWiseJob');
     $this->load->view('common/footer');
   }
+
+  public function getKanbanDataDep(){
+    $getKanDep = $this->kanmodel->getKanbanDataDep($this->session->userdata('dep_type'));
+    $da = [];
+    if($this->session->userdata('dep_type')){
+      foreach ($getKanDep as $value) {
+        if($value->job_status == null || $value->job_status == 0){
+          $da[] = array('id'=>$value->id,'data'=>$value->data,'job_status'=>$value->job_status);
+        }
+      }
+      echo json_encode($da);
+    }else{
+      echo json_encode('404 Not Found');
+    }
+  }
+
+  public function getKanbanDataId(){
+    $getKanDep = $this->kanmodel->getKanbanDataId($this->input->post('dep_id'));
+    echo json_encode($getKanDep);
+  }
+
+  public function updateKanbanData(){
+		$id = $this->input->post('dep_id');
+		$data = array(
+			'data'=> $this->input->post('dep_data'),
+			'job_status' => $this->input->post('status')
+		);
+		if($this->kanmodel->updateKanbanData($id,$data)){
+      echo json_encode(array('job_status'=>true));
+    }else{
+      echo json_encode(array('job_status'=>false));
+    }
+	}
 
   public function postJobDep(){
     $data = 'Post Job Department';
@@ -239,7 +272,7 @@ class Department extends CI_Controller {
 
   public function getAllDepartmentTab(){
     $getDep = $this->departmodel->getAllDepartments();
-    $da;
+    $da = [];
     foreach ($getDep as $k) {
       if($k->keywords != ''){
         $keyworder = join(',',array_keys(unserialize($k->keywords)));

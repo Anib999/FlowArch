@@ -284,3 +284,37 @@
   </div>
 </div>
 <!-- edit department Modal -->
+
+<!-- edit job_dep Modal -->
+<div class="modal fade" id="editJobDepModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Job Department Details</h5>
+      </div>
+      <form id="editJobDepForm" class="" method="post">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="postion-relative form-group">
+                <label for="">Id</label>
+                <input type="text" class="dep_id form-control" name="dep_id" value="" placeholder="Id" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Name</label>
+                <input type="text" class="dep_data form-control" name="dep_data" value="" placeholder="Job Name">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger job_bu" name="rej_job" value="0" data-dismiss="modal">Reject</button>
+          <button type="button" class="btn btn-success job_bu" name="acc_job" value="1" data-dismiss="modal">Accept</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- edit job_dep Modal -->

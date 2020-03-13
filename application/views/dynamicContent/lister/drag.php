@@ -29,16 +29,19 @@
     <div class="col-md-12">
       <!-- <div class="main-card mb-3 card">
         <div class="card-header">Job Stages</div>
-        <div class="card-body"> -->
+        <div class="card-body" id="carder"> -->
           <img id="loader" src="<?= base_url('assets/images/newla.gif') ?>" alt="" style="position: absolute; z-index:3;left:39%">
 
           <div class="kanban-board" id="kan-b">
+            <div class="boards">
+
+            </div>
             <div class="board">
 
             </div>
           </div>
-<!--
-        </div>
+
+        <!-- </div>
       </div> -->
     </div>
   </div>
@@ -47,3 +50,4 @@
 
 <script src="<?= base_url('assets/js/lister/muuri.js') ?>" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/lister/dragger.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/lister/dragLog.js') ?>" charset="utf-8"></script>

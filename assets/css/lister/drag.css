@@ -1,6 +1,16 @@
+#kan-b{
+  overflow-x: auto;
+}
+
 .board {
   position: relative;
   margin-left: 1%;
+  margin-right: 1%;
+}
+.boards {
+  position: relative;
+  margin-left: 2%;
+  float: left;
 }
 .board-column {
   position: absolute;
@@ -11,6 +21,25 @@
   background: #eaeaea;
   border-radius: 3px;
   z-index: 1;
+}
+.board-columns {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px !important;
+  width: 155px;
+  margin: 1% 1%;
+  background: #eaeaea;
+  border-radius: 3px;
+  z-index: 1;
+}
+@media (max-width: 720px){
+  .board-columns{
+    top: 4px !important;
+  }
+  #loader{
+    left: 22% !important;
+  }
 }
 .board-column.muuri-item-releasing {
   z-index: 2;
@@ -44,17 +73,30 @@
 .board-column.done .board-column-header {
   background: #2ac06d;
 }
+.board-columns.backlogs .board-column-header {
+  background: #44413e;
+}
 .board-column-content {
   position: relative;
-  max-height: 202px;
-  overflow-y: auto;
+  /* max-height: 202px;
+  overflow-y: auto; */
 }
 .board-column-content {
   position: relative;
   border: 10px solid transparent;
   min-height: 202px;
 }
+.board-column-contents {
+  position: relative;
+  border: 10px solid transparent;
+  min-height: 202px;
+}
 .board-item {
+  position: absolute;
+  width: 100%;
+  margin: 5px 0;
+}
+.board-items {
   position: absolute;
   width: 100%;
   margin: 5px 0;

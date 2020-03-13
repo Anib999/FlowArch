@@ -40,7 +40,8 @@ class KanModel extends CI_Model {
       kt.id AS status,
       kd.pre_status,
       kd.job_priority,
-      kt.title
+      kt.title,
+      kd.job_status
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt
           ON kd.status = kt.id
@@ -51,8 +52,28 @@ class KanModel extends CI_Model {
     return $result;
   }
 
+  public function getKanbanDataView($dep_type){
+    $query = $this->db->query('SELECT
+      kd.id,
+      kd.data,
+      kt.id AS status,
+      kd.pre_status,
+      kd.job_priority,
+      kt.title,
+      kd.job_status
+      FROM `kanbantab` AS kd
+        JOIN `kantitle` AS kt
+          ON kd.status = kt.id
+      WHERE kd.posted_by = '.$dep_type.'
+      ORDER BY kd.status ASC
+    ');
+    $result = $query->result();
+    return $result;
+  }
+
   public function getAllKanTitle(){
     $query = $this->db->get('kantitle');
+    $this->db->order_by('dep_type', 'ASC');
     $result = $query->result();
     return $result;
   }
@@ -91,9 +112,28 @@ class KanModel extends CI_Model {
     return $query;
   }
 
+  public function getKanbanDataPending($posted_by){
+    $this->db->where('job_status',null);
+    $this->db->where('posted_by',$posted_by);
+    $query = $this->db->get('kanbantab');
+    return $query->result();
+  }
+
+  public function getKanbanDataRejected($posted_by){
+    $this->db->where('job_status',0);
+    $this->db->where('posted_by',$posted_by);
+    $query = $this->db->get('kanbantab');
+    return $query->result();
+  }
+
+  public function getKanbanDataPendRej($posted_by){
+    $this->db->where('posted_by',$posted_by);
+    $query = $this->db->get('kanbantab');
+    return $query->result();
+  }
   public function updateKanbanData($id, $data){
     $this->db->where('id',$id);
-    $this->db->update('kanbantab',$data);
+    return $this->db->update('kanbantab',$data);
   }
 
   public function deleteKanbanById($id){
