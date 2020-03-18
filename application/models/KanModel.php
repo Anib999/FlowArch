@@ -10,6 +10,8 @@ class KanModel extends CI_Model {
 
   public function insertKanbanData($data){
     $this->db->insert('kanbantab',$data);
+    // $data['id'] = $this->db->insert_id();
+    // return $data;
   }
 
   // public function getAllKanbanData(){
@@ -40,7 +42,26 @@ class KanModel extends CI_Model {
       kt.id AS status,
       kd.pre_status,
       kd.job_priority,
+      kd.job_description,
       kt.title,
+      kd.job_status
+      FROM `kanbantab` AS kd
+        JOIN `kantitle` AS kt
+          ON kd.status = kt.id
+      WHERE kd.dep_type = '.$dep_type.'
+      ORDER BY kd.status ASC
+    ');
+    $result = $query->result();
+    return $result;
+  }
+
+  public function getKanbanDataDepTable($dep_type){
+    $query = $this->db->query('SELECT
+      kd.id,
+      kd.data,
+      kt.id AS status_id,
+      kt.title AS status,
+      kd.job_priority,
       kd.job_status
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt
@@ -54,12 +75,10 @@ class KanModel extends CI_Model {
 
   public function getKanbanDataView($dep_type){
     $query = $this->db->query('SELECT
-      kd.id,
       kd.data,
       kt.id AS status,
-      kd.pre_status,
       kd.job_priority,
-      kt.title,
+      kd.job_description,
       kd.job_status
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt
@@ -85,8 +104,13 @@ class KanModel extends CI_Model {
   }
 
   public function getKanTitleDepWithId($dep_type){
-    $this->db->where('dep_type',$dep_type);
-    $query = $this->db->get('kantitle');
+    $query = $this->db->query('SELECT kt.id,
+      kt.title,
+      dt.dep_type
+      FROM `kantitle` as kt
+        JOIN `deptab` as dt
+          ON dt.id = kt.dep_type
+      WHERE kt.dep_type = '.$dep_type.' ');
     return $query->result();
   }
 
@@ -103,6 +127,7 @@ class KanModel extends CI_Model {
       kd.job_description,
       kd.job_priority,
       kd.job_stage,
+      kd.date_of_completion,
       kt.title
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt

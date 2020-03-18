@@ -72,15 +72,22 @@
               </div>
               <div class="col-md-6">
                 <div class="position-relative form-group">
+                  <label for="date_of_completion" class="">Expected Date of Completion</label>
+                  <input type="date" name="date_of_completion" id="date_of_completion" class="form-control" value="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="position-relative form-group">
                   <label for="dep_type">Department</label>
                   <select class="form-control" name="dep_type" required>
-                    <option value=" ">Select Department</option>
+                    <option value="">Select Department</option>
                     <?php
                     foreach ($depType as $k) {
                       printf("<option value='%d'>%s</option>",$k->id,$k->dep_type);
                     }
                     ?>
                   </select>
+                  <?= form_error('dep_type'); ?>
                 </div>
               </div>
               <input type="hidden" name="status" value="" style="display:none;">

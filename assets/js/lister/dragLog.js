@@ -68,6 +68,7 @@ $(document).ready(function(){
     '<div class="board-items acceptor" data-id="'+ item.id + '" data-status="'+item.status+'"  >' +
     '<div class="board-item-content">' +
     '<p class="board-title">' + item.data + '</p>' +
+    '<div class="board-description">'+item.job_description+'</div>'+
     '</div>' +
     '</div>';
 

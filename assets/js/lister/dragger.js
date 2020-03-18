@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var translateXPos = 0;
           var maxBoardHeight = 0;
           gridCol.each(function(i){
-            translateXPos += 178;
+            translateXPos += 356;
             this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
             if(maxBoardHeight < this.clientHeight)
             maxBoardHeight = this.clientHeight;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //if(i == 0)
         //this.style.transform = 'translateX(0px) translateY(0px)';
         //else {
-        translateXPos += 178;
+        translateXPos += 356;
         this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
         if(maxBoardHeight < this.clientHeight)
         maxBoardHeight = this.clientHeight;
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });*/
     })
     .on('layoutStart', function () {
-    //  boardGrid.refreshItems().layout();
+      //  boardGrid.refreshItems().layout();
     })
     //columnGrids.push(muuri);
 
@@ -206,6 +206,7 @@ function generateBoardItem(item) {
   //data-toggle="modal" data-target="#viewJobModal"
   '<div class="board-item-content">' +
   '<p class="board-title">' + item.data + '</p>' +
+  '<div class="board-description">'+item.job_description+'</div>'+
   '</div>' +
   '</div>';
 
@@ -223,10 +224,11 @@ function generateBoards(count) {
 }
 
 function generateBoard(index) {
+  //console.log('g_'+index.id);
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
   '<div class="board-column '+index.title.toLowerCase() +'">' +
-  '<div class="board-column-header">' + index.title.toUpperCase() + '<span class="pull-right"><i class="fa fa-trash" id="kan_t_delete" data-id="' + index.id + '"></i></span></div>' +
+  '<div class="board-column-header"><span class="badge badge-pill badge-secondary pull-left"></span>' + index.title.toUpperCase() + '<span class="pull-right"><i class="fa fa-trash" id="kan_t_delete" data-id="' + index.id + '"></i></span></div>' +
   '<div class="board-column-content" data-id="' + index.id + '"></div>' +
   // '<div class="board-column-footer"></div>'+
   // '<div class="board-column-footer addJob" data-fid="'+index.id+'"> Add a Job </div>'+
@@ -305,6 +307,7 @@ $('#insertJobData').on('submit',function(e){
     method: 'post',
     data: $('#insertJobData').serializeArray(),
     success: function(res){
+      console.log(res);
       $('#addJobModal').modal('hide');
       // let status = 1;
       // let cardGen = generateCard($('#insertJobData').serializeArray());
@@ -347,7 +350,11 @@ $('body').on('click','.contner',function(e){
         if(response == 'title'){
           $("#viewJobModal .modal-title .modallist_"+response).html(res[response]);
         }
-        if(res[response] != ''){
+        if(response == 'date_of_completion'){
+          let dateSplit = res[response].split(' ');
+          $("#viewJobModal .modal-body .modallist_"+response).val(dateSplit[0]);
+        }
+        else if(res[response] != ''){
           $("#viewJobModal .modal-body .modallist_"+response).val(res[response]);
         }else{
           $("#viewJobModal .modal-body .modallist_"+response).val("N/A");
@@ -443,7 +450,7 @@ $('button[name="acc_job"]').on('click',function(e){
         //if(i == 0)
         //this.style.transform = 'translateX(0px) translateY(0px)';
         //else {
-        translateXPos += 178;
+        translateXPos += 356;
         this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
 
         //}

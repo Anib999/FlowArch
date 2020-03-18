@@ -115,7 +115,7 @@ class Department extends CI_Controller {
   }
 
   public function getKanTitleDepWithId(){
-    $getDepId = $this->kanmodel->getKanTitleDepWithId($this->input->post('dep_type'));
+    $getDepId = $this->kanmodel->getKanTitleDepWithId($this->session->userdata('dep_type'));
     echo json_encode($getDepId);
   }
 
@@ -190,7 +190,7 @@ class Department extends CI_Controller {
     if($this->session->userdata('dep_type')){
       foreach ($getKanDep as $value) {
         if($value->job_status == null || $value->job_status == 0){
-          $da[] = array('id'=>$value->id,'data'=>$value->data,'job_status'=>$value->job_status);
+          $da[] = array('id'=>$value->id,'data'=>$value->data,'job_status'=>$value->job_status,'job_description'=>$value->job_description,'job_priority'=>$value->job_priority);
         }
       }
       echo json_encode($da);

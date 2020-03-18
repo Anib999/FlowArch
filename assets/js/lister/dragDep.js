@@ -32,15 +32,19 @@ $(document).ready(function(){
       gridCol = $('.board-column');
       setTimeout(function(){
         var translateXPos = 0;
+        var maxBoardHeight = 0;
         gridCol.each(function(i){
-          translateXPos += 178;
+          translateXPos += 356;
           this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
+          if(maxBoardHeight < this.clientHeight)
+          maxBoardHeight = this.clientHeight;
         })
-      },100);
+        $('.board.muuri').css('height',(maxBoardHeight+23.5)+'px')
+      },100)
 
-      toastr.options.positionClass = "toast-bottom-right";
-      toastr.warning('3','Job pending');
-      toastr.error('2','Job Rejected');
+      // toastr.options.positionClass = "toast-bottom-right";
+      // toastr.warning('3','Job pending');
+      // toastr.error('2','Job Rejected');
     }).fail(function(res){
       console.log('error');
     })
@@ -51,7 +55,7 @@ $(document).ready(function(){
       var translateXPos = 0;
       var maxBoardHeight = 0;
       gridCol.each(function(i){
-        translateXPos += 178;
+        translateXPos += 356;
         this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
         if(maxBoardHeight < this.clientHeight)
           maxBoardHeight = this.clientHeight;
@@ -98,6 +102,7 @@ $(document).ready(function(){
     '<div class="board-item contner '+item.job_priority+'" data-id="'+ item.id + '" data-status="'+item.status+'"  >' +
     '<div class="board-item-content">' +
     '<p class="board-title">' + item.data + '</p>' +
+    '<div class="board-description">'+item.job_description+'</div>'+
     '</div>' +
     '</div>';
 

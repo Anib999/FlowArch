@@ -66,6 +66,8 @@
             <thead>
               <th>Id</th>
               <th>Status</th>
+              <th>Department</th>
+              <th>Options</th>
             </thead>
           </table>
         </div>

@@ -21,6 +21,7 @@
     <div class="col-md-12">
       <button type="button" class="btn btn-primary" id="add_job" name="button">Add a job</button>
       <a href="<?= base_url('Lister/dragToFlow?dep_type='.$_GET['dep_type'].'') ?>"><button type="button" name="button" class="pull-right btn btn-info">View in FlowChart</button></a>
+      <a href="<?= base_url('Lister/dragTable') ?>"><button type="button" class="btn btn-secondary pull-right" name="view_table" style="margin-right:5px;">View in Table</button></a>
     </div>
   </div>
   <br />

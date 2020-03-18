@@ -29,7 +29,7 @@
 
 </div>
 </div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="<?= base_url('assets/js/bootstrap.min.js') ?>" charset="utf-8"></script>
 <script src="<?= base_url('assets/js/newmain.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/js/autoclosesidebar.js') ?>" charset="utf-8"></script> -->
 </body>
@@ -169,6 +169,12 @@
                 <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="date_of_completion" class="">Expected Date of Completion</label>
+                <input type="date" name="date_of_completion" id="date_of_completion" class="form-control" value="">
+              </div>
+            </div>
             <input type="hidden" name="this_stat" id='this_stat' value="" style="display:none;">
           </div>
         </div>
@@ -236,6 +242,12 @@
                 <input type="text" name="modallist_job_stage" value="" class="modallist_job_stage form-control">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Expected Date of Completion</label>
+                <input type="date" name="modallist_date_of_completion" value="" class="modallist_date_of_completion form-control">
+              </div>
+            </div>
           </div>
 
         </div>
@@ -295,16 +307,23 @@
       <form id="editJobDepForm" class="" method="post">
         <div class="modal-body">
           <div class="form-row">
-            <div class="col-md-6">
-              <div class="postion-relative form-group">
-                <label for="">Id</label>
-                <input type="text" class="dep_id form-control" name="dep_id" value="" placeholder="Id" readonly>
-              </div>
-            </div>
+            <input type="hidden" class="dep_id form-control" name="dep_id" value="" placeholder="Id" readonly style="display:none;">
             <div class="col-md-6">
               <div class="position-relative form-group">
                 <label for="">Job Name</label>
                 <input type="text" class="dep_data form-control" name="dep_data" value="" placeholder="Job Name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Priority</label>
+                <input type="text" class="dep_job_priority form-control" name="dep_job_priority" value="" placeholder="Job Name" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Description</label>
+                <textarea name="dep_job_description" class="dep_job_description form-control" placeholder="N/A" readonly></textarea>
               </div>
             </div>
           </div>
