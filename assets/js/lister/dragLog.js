@@ -148,6 +148,10 @@ $(document).ready(function(){
             timer: 1500
           });
           columnGrids['g_'+'0'].remove([seeer], {removeElements: true});
+
+          let cardGen = generateCardForActive(data);
+          columnGrids['g_'+data.dep_status].add([cardGen]);
+
         }else{
           Swal.fire({
             icon:'error',
@@ -160,15 +164,27 @@ $(document).ready(function(){
     }).fail(function(res){
       console.log('error');
     })
-    setTimeout(function(e){
-      $('body').css('padding-right','');
-    },2500);
 
   })
 
-  $('#save_job').on('click',function(){
-      setTimeout(function(){
-        jobLogCaller();
-      },300);
-  })
+  function generateCardForActive(item) {
+    let itemElem = document.createElement('div');
+    let itemTemplate = '' +
+    '<div class="board-item contner" data-id="'+ item.dep_id + '" data-status="'+item.dep_status+'"  >' +
+    '<div class="board-item-content">' +
+    '<div class="board-head-col '+item.dep_job_priority+'">&nbsp;</div>'+
+    '<p class="board-title">' + item.dep_data + '</p>' +
+    '<div class="board-description">'+item.dep_job_description+'</div>'+
+    '</div>' +
+    '</div>';
+
+    itemElem.innerHTML = itemTemplate;
+    return itemElem.firstChild;
+  }
+
+  // $('#save_job').on('click',function(){
+  //     setTimeout(function(){
+  //       jobLogCaller();
+  //     },300);
+  // })
 })

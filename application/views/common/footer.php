@@ -307,7 +307,8 @@
       <form id="editJobDepForm" class="" method="post">
         <div class="modal-body">
           <div class="form-row">
-            <input type="hidden" class="dep_id form-control" name="dep_id" value="" placeholder="Id" readonly style="display:none;">
+            <input type="hidden" class="dep_id form-control" name="dep_id" value="" readonly style="display:none;">
+            <input type="hidden" name="dep_status" class="dep_status" value="" readonly style="display:none;">
             <div class="col-md-6">
               <div class="position-relative form-group">
                 <label for="">Job Name</label>

@@ -46,8 +46,8 @@ class Lister extends CI_Controller {
 			'status'=>$this->input->post('this_stat'),
 			'dep_type'=>$this->session->userdata('dep_type')
 		);
-		$this->kmodel->insertKanbanData($data);
-		//echo json_encode($data);
+		$reData = $this->kmodel->insertKanbanData($data);
+		echo json_encode($reData);
 	}
 
 	public function getAllKanbanData(){

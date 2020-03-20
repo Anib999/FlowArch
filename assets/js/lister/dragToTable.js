@@ -7,27 +7,30 @@ $(document).ready(function(){
     method: 'post',
   }).done(function(res){
     let kanData = res.kandata;
-    let kanTitle = res.kantitle;
 
     let statusChecker = '';
     let tableRow = '';
     for (var resDa in kanData) {
-      if(kanData[resDa].status != statusChecker){
+      let dateSpliter = kanData[resDa].date_of_completion.split(' ');
+      //if(kanData[resDa].status != statusChecker){
         statusChecker = kanData[resDa].status;
         tableRow = '<tr>'+
-                        '<td>'+statusChecker+'</td>'+
-                        '<td>'+kanData[resDa].data+'</td>'+
-                        '<td>'+kanData[resDa].job_priority+'</td>'+
-                       '</tr>';
-        $('.table').append(tableRow);
-      }else{
-        tableRow = '<tr>'+
-                        '<td></td>'+
-                        '<td>'+kanData[resDa].data+'</td>'+
-                        '<td>'+kanData[resDa].job_priority+'</td>'+
-                       '</tr>';
-        $('.table').append(tableRow);
-      }
+                      '<td class="text-center">'+kanData[resDa].data+'</td>'+
+                      '<td class="text-center"><span class="badge badge-pill '+kanData[resDa].job_priority+'">'+kanData[resDa].job_priority+'</span></td>'+
+                      '<td class="text-center">'+dateSpliter[0]+'</td>'+
+                      '<td class="text-center">'+statusChecker+'</td>'+
+                      '</tr>';
+        $('.table tbody').append(tableRow);
+      //}
+      // else{
+      //   tableRow = '<tr>'+
+      //                 '<td>'+kanData[resDa].data+'</td>'+
+      //                 '<td>'+kanData[resDa].job_priority+'</td>'+
+      //                 '<td>'+dateSpliter[0]+'</td>'+
+      //                 '<td></td>'+
+      //                 '</tr>';
+      //   $('.table tbody').append(tableRow);
+      // }
 
     }
   }).fail(function(res){

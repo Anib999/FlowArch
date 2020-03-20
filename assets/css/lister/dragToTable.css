@@ -1,0 +1,12 @@
+.table .Low {
+  color: #fff;
+  background-color: rgba(22, 170, 255, 0.58);
+}
+.table .Medium {
+  color: #fff;
+  background-color: rgba(247, 185, 36, 0.60);
+}
+.table .High {
+  color: #fff;
+  background-color: rgba(217, 37, 80, 0.60);
+}

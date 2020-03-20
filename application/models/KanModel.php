@@ -10,8 +10,8 @@ class KanModel extends CI_Model {
 
   public function insertKanbanData($data){
     $this->db->insert('kanbantab',$data);
-    // $data['id'] = $this->db->insert_id();
-    // return $data;
+    $data['id'] = $this->db->insert_id();
+    return $data;
   }
 
   // public function getAllKanbanData(){
@@ -62,12 +62,13 @@ class KanModel extends CI_Model {
       kt.id AS status_id,
       kt.title AS status,
       kd.job_priority,
+      kd.date_of_completion,
       kd.job_status
       FROM `kanbantab` AS kd
         JOIN `kantitle` AS kt
           ON kd.status = kt.id
       WHERE kd.dep_type = '.$dep_type.'
-      ORDER BY kd.status ASC
+      ORDER BY kd.date_of_completion DESC
     ');
     $result = $query->result();
     return $result;
@@ -127,6 +128,7 @@ class KanModel extends CI_Model {
       kd.job_description,
       kd.job_priority,
       kd.job_stage,
+      kd.status,
       kd.date_of_completion,
       kt.title
       FROM `kanbantab` AS kd

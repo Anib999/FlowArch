@@ -55,11 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
               let resItem = generateBoardItem(kanData[resDa]);
               if(columnGrids['g_'+kanData[resDa].status] != undefined){
                 columnGrids['g_'+kanData[resDa].status].add([resItem]);
+
+                //for count bages show only on reload
+                $('.badge.g_'+kanData[resDa].status).empty();
+                $('.badge.g_'+kanData[resDa].status).append(columnGrids['g_'+kanData[resDa].status]._items.length);
+                //for count bages show only on reload
               }
             }
           }
         }
-
         gridCol = $('.board-column');
         setTimeout(function(){
           var translateXPos = 0;
@@ -167,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let headGridItem = item.getGrid()._element.dataset.id;
         let itemGrid = item.getElement().dataset.id;
 
+        console.log(currentItem);
+        console.log(item.getGrid()._element);
         let currentItemStat = currentItem.dataset.status;
         if(currentItem.dataset.status != headGridItem){
           $.ajax({
@@ -175,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'post',
             success: function(res){
               //console.log('success');
+
             },
             error: function(res){
               console.log('error');
@@ -202,9 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
 function generateBoardItem(item) {
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
-  '<div class="board-item contner '+item.job_priority+'" data-id="'+ item.id + '" data-status="'+item.status+'"  >' +
+  '<div class="board-item contner" data-id="'+ item.id + '" data-status="'+item.status+'"  >' +
   //data-toggle="modal" data-target="#viewJobModal"
   '<div class="board-item-content">' +
+  '<div class="board-head-col '+item.job_priority+'">&nbsp;</div>'+
   '<p class="board-title">' + item.data + '</p>' +
   '<div class="board-description">'+item.job_description+'</div>'+
   '</div>' +
@@ -228,7 +236,7 @@ function generateBoard(index) {
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
   '<div class="board-column '+index.title.toLowerCase() +'">' +
-  '<div class="board-column-header"><span class="badge badge-pill badge-secondary pull-left"></span>' + index.title.toUpperCase() + '<span class="pull-right"><i class="fa fa-trash" id="kan_t_delete" data-id="' + index.id + '"></i></span></div>' +
+  '<div class="board-column-header"><span class="badge badge-pill badge-secondary pull-left g_'+index.id+'">0</span>' + index.title.toUpperCase() + '<span class="pull-right"><i class="fa fa-trash" id="kan_t_delete" data-id="' + index.id + '"></i></span></div>' +
   '<div class="board-column-content" data-id="' + index.id + '"></div>' +
   // '<div class="board-column-footer"></div>'+
   // '<div class="board-column-footer addJob" data-fid="'+index.id+'"> Add a Job </div>'+
@@ -237,14 +245,14 @@ function generateBoard(index) {
   return itemElem.firstChild;
 }
 
-function generateCard(titles){
-  console.log(titles);
+function generateCard(resData){
+  //for backlogs only
   let itemElem = document.createElement('div');
   let itemTemplate = '' +
-  //static status needs to be changed
-  '<div class="board-item" data-id="" data-status="1">' +
+  '<div class="board-items acceptor" data-id="'+resData.id+'" data-status="">' +
   '<div class="board-item-content">' +
-  '<p class="board-title">'+titles[0].value+'</p>' +
+  '<p class="board-title">'+resData.data+'</p>' +
+  '<div class="board-description">'+resData.job_description+'</div>'+
   '</div>' +
   '</div>';
 
@@ -307,11 +315,12 @@ $('#insertJobData').on('submit',function(e){
     method: 'post',
     data: $('#insertJobData').serializeArray(),
     success: function(res){
-      console.log(res);
+      res = JSON.parse(res);
       $('#addJobModal').modal('hide');
-      // let status = 1;
-      // let cardGen = generateCard($('#insertJobData').serializeArray());
-      // columnGrids['g_'+status].add([cardGen]);
+
+      let cardGen = generateCard(res);
+      columnGrids['g_0'].add([cardGen]);
+
       setTimeout(function(e){
         Swal.fire({
           icon: 'success',
@@ -335,9 +344,11 @@ $('#insertJobData').on('submit',function(e){
     }
   })
 })
-
+selectedDiv = '';
 $('body').on('click','.contner',function(e){
   e.preventDefault();
+  selectedDiv = this;
+
   let itemId = this.dataset.id;
   $("#viewJobModal").modal('show');
   $.ajax({
@@ -369,16 +380,34 @@ $('body').on('click','.contner',function(e){
 
 $('#edit_job').on('click',function(e){
   e.preventDefault();
-  let itemId = $("#modallist_id").val();
+
+  var _form = $('#editjoblist');
+  var data = {};
+  var formValid = true;
+  $('select,input,textarea',_form).each(function(){
+    if(!this.checkValidity()){
+      formValid = false;
+    }
+    data[this.name] = this.value;
+  });
+  if(!formValid){
+    return;
+  }
+
   $('#loader').show();
   $.ajax({
     url: base_url+'Lister/updateModalKanData',
     dataType: 'json',
-    data: $('#editjoblist').serializeArray(),
+    data: data,
     method: 'post',
     success: function(res){
       $('#viewJobModal').modal('hide');
-      jobCaller();
+      //jobCaller();
+      let jobPri = selectedDiv.children[0].children[0];
+      let jobTit = selectedDiv.children[0].children[1];
+      let jobDes = selectedDiv.children[0].children[2];
+
+      console.log(jobTit);
 
       setTimeout(function(e){
         Swal.fire({
@@ -401,7 +430,7 @@ $('#edit_job').on('click',function(e){
     }
   })
 })
-
+//deleter is still reloading
 $('body').on('click','#kan_t_delete',function(e){
   e.preventDefault();
 
@@ -441,23 +470,5 @@ $('body').on('click','#kan_t_delete',function(e){
 
 });
 
-$('button[name="acc_job"]').on('click',function(e){
-  setTimeout(function(){
-    jobCaller();
-    setTimeout(function(){
-      var translateXPos = 0;
-      gridCol.each(function(i){
-        //if(i == 0)
-        //this.style.transform = 'translateX(0px) translateY(0px)';
-        //else {
-        translateXPos += 356;
-        this.style.transform = 'translateX('+translateXPos+'px) translateY(0px)';
-
-        //}
-      })
-    },500)
-  },1500);
-
-})
 
 });

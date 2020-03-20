@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/lister/drag.css') ?>">
 <div class="app-main__inner">
   <!--Title-->
-  <div class="app-page-title">
+  <!-- <div class="app-page-title">
     <div class="page-title-wrapper">
       <div class="page-title-heading">
         <div class="page-title-icon">
@@ -14,11 +14,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!--Title-->
 
   <div class="row">
     <div class="col-md-12">
+      <div class="job_header">
+        <h5>Job Status of <?php echo $this->session->userdata('dep_name'); ?></h5>
+      </div>
       <button type="button" class="btn btn-primary" id="add_job" name="button">Add a job</button>
       <a href="<?= base_url('Lister/dragToFlow?dep_type='.$_GET['dep_type'].'') ?>"><button type="button" name="button" class="pull-right btn btn-info">View in FlowChart</button></a>
       <a href="<?= base_url('Lister/dragTable') ?>"><button type="button" class="btn btn-secondary pull-right" name="view_table" style="margin-right:5px;">View in Table</button></a>

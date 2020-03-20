@@ -101,6 +101,7 @@ $(document).ready(function(){
     let itemTemplate = '' +
     '<div class="board-item contner '+item.job_priority+'" data-id="'+ item.id + '" data-status="'+item.status+'"  >' +
     '<div class="board-item-content">' +
+    '<div class="board-head-col '+item.job_priority+'">&nbsp;</div>'+
     '<p class="board-title">' + item.data + '</p>' +
     '<div class="board-description">'+item.job_description+'</div>'+
     '</div>' +

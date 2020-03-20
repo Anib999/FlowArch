@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= base_url('assets/css/lister/dragToTable.css') ?>">
 <div class="app-main__inner">
   <!--Title-->
   <div class="app-page-title">
@@ -68,18 +69,21 @@
   <!--Title-->
 
   <div class="main-card mb-3 card">
-    <div class="card-body">
-      <h5 class="card-title">Jobs Table for active job only</h5>
-      <div class="table-div">
-        <table class="table">
+    <div class="card-header">Jobs Table for active job only</div>
+    <!-- <div class="card-body"> -->
+      <div class="table-responsive">
+        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
           <thead>
-            <th>Job Status</th>
-            <th>Job Name</th>
-            <th>Job Priority</th>
+            <th class="text-center">Job Name</th>
+            <th class="text-center">Job Priority</th>
+            <th class="text-center">Expected Date of Completion</th>
+            <th class="text-center">Job Status</th>
           </thead>
+          <tbody>
+          </tbody>
         </table>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
 </div>
