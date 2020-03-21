@@ -58,3 +58,11 @@ function addColumn() {
   boardGrid.add([board]);
   reload();
 }
+
+$a = serialize(array_flip(array(
+  'law',
+  'legal'
+))
+ );
+ var_dump($a);exit();
+var_dump(join(',',array_keys(unserialize($a))));exit();

@@ -16884,9 +16884,10 @@
    r()(this).toggleClass("is-active"), r()(".app-container").toggleClass("sidebar-mobile-open")
   }), r()(".mobile-toggle-header-nav").click(function() {
    r()(this).toggleClass("active"), r()(".app-header__content").toggleClass("header-mobile-open")
-  }), r()(window).on("resize", function() {
-   r()(this).width() < 1250 ? r()(".app-container").addClass("closed-sidebar-mobile closed-sidebar") : r()(".app-container").removeClass("closed-sidebar-mobile closed-sidebar")
   })
+  // , r()(window).on("resize", function() {
+  //  r()(this).width() < 1250 ? r()(".app-container").addClass("closed-sidebar-mobile closed-sidebar") : r()(".app-container").removeClass("closed-sidebar-mobile closed-sidebar")
+  // })
  })
 }, function(e, t, n) {
  /*!
@@ -26627,7 +26628,7 @@
   }, d.inherits(d.SVGCanvasElement, d.SVGElement), d.mixin(d.SVGCanvasElement, d.AbstractCanvasElement), d.SVGCanvasElement.prototype.setSize = function(e, t) {
    this.width = e, this.height = t, this.node.setAttribute("width", e), this.node.setAttribute("height", t)
   }, d.SVGCanvasElement.prototype.applyTransformParams = function(e, t, n) {
-   this.scale = e, this.transX = t, this.transY = n, this.rootElement.node.setAttribute("transform", "scale(" + e + ") translate(" + t + ", " + n + ")")
+   //this.scale = e, this.transX = t, this.transY = n, this.rootElement.node.setAttribute("transform", "scale(" + e + ") translate(" + t + ", " + n + ")")
   }, d.SVGShapeElement = function(e, t) {
    d.SVGShapeElement.parentClass.call(this, e, t), d.AbstractShapeElement.apply(this, arguments)
   }, d.inherits(d.SVGShapeElement, d.SVGElement), d.mixin(d.SVGShapeElement, d.AbstractShapeElement), d.SVGShapeElement.prototype.applyAttr = function(e, t) {

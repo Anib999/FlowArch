@@ -26,4 +26,13 @@ class AddDepartmentModel extends CI_Model {
     return $query;
   }
 
+  public function insertKanTitle($data){
+    $this->db->insert('kantitle',$data);
+  }
+
+  public function deleteKanTitleById($id){
+    $this->db->where('id',$id);
+    $this->db->delete('kantitle');
+  }
+
 }

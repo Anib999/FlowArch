@@ -34,7 +34,7 @@ itemContainers.forEach(function (container) {
   .on('layoutStart', function () {
     boardGrid.refreshItems().layout();
   });
-  
+
   columnGrids.push(grid);
 });
 

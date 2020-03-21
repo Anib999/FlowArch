@@ -121,13 +121,14 @@ $(document).ready(function(){
             })
           }
         }
+        setTimeout(function(e){
+          $('body').css('padding-right','');
+        },1500);
       },
       error: function(res){
         console.log('error');
       }
     })
   })
-
-  
 
 });

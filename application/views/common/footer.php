@@ -18,7 +18,7 @@
       <div class="app-footer-right">
         <ul class="nav">
           <li class="nav-item">
-              <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="" style="height:21px;">
+            <img src="<?= base_url('assets/images/smalllogo.png') ?>" alt="" class="" style="height:21px;">
           </li>
         </ul>
       </div>
@@ -29,7 +29,8 @@
 
 </div>
 </div>
-<script src="<?= base_url('assets/js/main.js') ?>"></script>
+<script src="<?= base_url('assets/js/bootstrap.min.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/newmain.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/js/autoclosesidebar.js') ?>" charset="utf-8"></script> -->
 </body>
 </html>
@@ -116,3 +117,224 @@
   </div>
 </div>
 <!-- Job Modal -->
+
+<!-- Add Job Modal -->
+<div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Job</h5>
+      </div>
+      <form method="post" id="insertJobData">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_title" class="">Job Title</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input name="modal_job_title" id="modal_job_title" placeholder="Job Title" type="text" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_description" class="">Job Description</label>
+                  </div>
+                  <div class="col-md-9">
+                    <textarea name="modal_job_description" id="modal_job_description" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_priority" class="">Priority</label>
+                <select class="form-control" name="job_priority" id="job_priority">
+                  <option value=" ">None</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Job Stage</label>
+                <input type="text" name="job_stage" id="job_stage" class="form-control" value="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="date_of_completion" class="">Expected Date of Completion</label>
+                <input type="date" name="date_of_completion" id="date_of_completion" class="form-control" value="">
+              </div>
+            </div>
+            <input type="hidden" name="this_stat" id='this_stat' value="" style="display:none;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="save_job" name="save_job" class="btn btn-primary">Save Job</button>
+          <button type="button" name="cancel_job" id="cancel_job" data-dismiss="modal" class="btn btn-default">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Add Job Modal -->
+
+<!-- View/edit Job Modal -->
+<div class="modal fade" id="viewJobModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">View Job Details <small>(<span class="modallist_title"></span>)</small></h5>
+      </div>
+      <form class="" id="editjoblist" method="post">
+        <div class="modal-body">
+
+          <input type="hidden" name="modallist_id" value="" id="modallist_id" class="modallist_id" readonly style="display:none;">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modal_job_title" class="">Job Title</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="text" name="modallist_data" value="" class="modallist_data form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="modallist_job_description" class="">Job Description</label>
+                  </div>
+                  <div class="col-md-9">
+                    <textarea name="modallist_job_description" class="modallist_job_description form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="modallist_job_priority" class="">Priority</label>
+                <select class="modallist_job_priority form-control" name="modallist_job_priority" id="modallist_job_priority">
+                  <option value=" ">None</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Job Stage</label>
+                <input type="text" name="modallist_job_stage" value="" class="modallist_job_stage form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="job_stage" class="">Expected Date of Completion</label>
+                <input type="date" name="modallist_date_of_completion" value="" class="modallist_date_of_completion form-control">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" name="edit_job" id="edit_job" class="btn btn-success" data-toggle="modal" data-target="#editJobModal">Edit Job</button>
+          <button type="button" name="cancel" id="canceledit_job" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- View/edit Job Modal -->
+
+<!-- edit department Modal -->
+<div class="modal fade" id="editDepModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Department Details</h5>
+      </div>
+      <form id="editDepForm" class="" method="post">
+        <div class="modal-body">
+          <input type="hidden" class="dep_id" name="dep_id" value="" readonly style="display:none;">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="postion-relative form-group">
+                <label for="">Department Name</label>
+                <input type="text" class="dep_dep_type form-control" name="dep_name" value="" placeholder="Department Name">
+              </div>
+              <?= form_error('dep_name'); ?>
+            </div>
+            <div class="col-md-12">
+              <div class="position-relative form-group">
+                <label for="">Keywords</label>
+                <input type="text" class="dep_keywords form-control" name="dep_keywords" value="" placeholder="Seperate keywords using comma (eg. example,example)">
+              </div>
+            </div>
+            <?= form_error('dep_keyword'); ?>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="editDepBtn" name="button">Edit Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- edit department Modal -->
+
+<!-- edit job_dep Modal -->
+<div class="modal fade" id="editJobDepModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Job Department Details</h5>
+      </div>
+      <form id="editJobDepForm" class="" method="post">
+        <div class="modal-body">
+          <div class="form-row">
+            <input type="hidden" class="dep_id form-control" name="dep_id" value="" readonly style="display:none;">
+            <input type="hidden" name="dep_status" class="dep_status" value="" readonly style="display:none;">
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Name</label>
+                <input type="text" class="dep_data form-control" name="dep_data" value="" placeholder="Job Name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Priority</label>
+                <input type="text" class="dep_job_priority form-control" name="dep_job_priority" value="" placeholder="Job Name" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative form-group">
+                <label for="">Job Description</label>
+                <textarea name="dep_job_description" class="dep_job_description form-control" placeholder="N/A" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger job_bu" name="rej_job" value="0" data-dismiss="modal">Reject</button>
+          <button type="button" class="btn btn-success job_bu" name="acc_job" value="1" data-dismiss="modal">Accept</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- edit job_dep Modal -->

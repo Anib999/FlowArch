@@ -1,15 +1,17 @@
-<link rel="stylesheet" href="<?= base_url('assets/css/datatables/jquery.dataTables.min.css') ?>">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<?= base_url('assets/css/flowchart/jquery.flowchart.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/flowchart/flowchart.css') ?>">
 <div class="app-main__inner">
   <!--Title-->
   <div class="app-page-title">
     <div class="page-title-wrapper">
       <div class="page-title-heading">
         <div class="page-title-icon">
-          <i class="pe-7s-pen icon-gradient bg-warm-flame">
+          <i class="pe-7s-vector icon-gradient bg-warm-flame">
           </i>
         </div>
-        <div>View Job
-          <div class="page-title-subheading">View jobs you posted.
+        <div>View Flowchart
+          <div class="page-title-subheading">Flowchart.
           </div>
         </div>
       </div>
@@ -68,27 +70,15 @@
   </div>
   <!--Title-->
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="main-card mb-3 card">
-        <div class="card-header">View Posted Jobs</div>
-        <div class="card-body overflow-auto">
-          <table id="viewOwnJob" style="width:100%" class="align-middle mb-0 table table-borderless table-striped table-hover">
-            <thead>
-              <tr>
-                <th class="text-center">Id</th>
-                <th>Job Name</th>
-                <th class="text-center">Posted By</th>
-                <th class="text-center">Posted Date</th>
-                <th class="text-center">Status</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
+  <div class="main-card mb-3 card">
+    <div class="card-body">
+      <h5 class="card-title">Flowchart
+      </h5>
+      <div class="overflow-auto" id="flowDiv"></div>
     </div>
   </div>
 
 </div>
-<script src="<?= base_url('assets/js/datatables/jquery.dataTables.min.js') ?>" charset="utf-8"></script>
-<script src="<?=  base_url('assets/js/portal/viewOwnDatatable.js') ?>" charset="utf-8"></script>
+
+<script src="<?= base_url('assets/js/flowchart/jquery.flowchart.js') ?>" charset="utf-8"></script>
+<script src="<?= base_url('assets/js/lister/dragToFlow.js') ?>" charset="utf-8"></script>

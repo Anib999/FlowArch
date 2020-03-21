@@ -25,7 +25,8 @@ class Login extends CI_Controller {
         $sesdata = array(
           'id'=>$data['id'],
           'username'=>$data['username'],
-          'dep_type'=>$data['dep_type']
+          'dep_type'=>$data['dep_type'],
+          'dep_name'=>$data['dep_name']
         );
         $this->session->set_userdata($sesdata);
         redirect('Dashboard/index');
